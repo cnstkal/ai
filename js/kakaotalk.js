@@ -37,12 +37,16 @@ function av(f,s){
 
 /* data */
 const P=[['#c9c8fa','#a9a7f2'],['#a9e8de','#7fd3c6'],['#b7dcff','#86bbf7'],['#ffd9b0','#ffb878'],['#ffc9d6','#f59ab4']];
+const FTOTAL=712;
 const raw=[
-['홍중 (ATEEZ)','',0,0,0],['여상 (ATEEZ)','',0,0,1],['산 (ATEEZ)','',0,0,2],['우영 (ATEEZ)','',0,0,3],['민기 (ATEEZ)','',0,0,4],['종호 (ATEEZ)','',0,0,5],['매니저1','',0,0,6],['매니저2','',0,0,7],['지인1','',0,0,8],['지인2','',0,0,9],['지인3','',0,0,10],['지인4','',0,0,11],['지인5','',0,0,12],['엄마','',0,0,13],['아빠','',0,0,14],['형','',0,0,15]];
+['엄마','',0,1,0],['아빠','',0,0,1],['형','',0,0,2],['이모','',0,0,3],
+['민재','',0,1,4],['지우','',0,0,5],['하린','',0,0,6],['도윤','',0,0,7],['수빈','',0,0,8],['현우','',0,0,9],['서연','',0,0,10],['태준','',0,0,11],
+['서윤 (문라이트)','',0,1,12],['태오 (블루밍)','',0,0,13],['강현 (네온스테이지)','',0,0,14],['유진 (루미너스)','',0,0,15],['시온 (스텔라)','',0,0,16],['하준 (코발트)','',0,0,17],['연우 (프리즘)','',0,0,18],['도경 (미드나잇)','',0,0,19],
+['제작팀 김PD','',0,0,20],['스타일리스트 최실장','',0,0,21],['안무 선생님 류쌤','',0,0,22],['보컬 트레이너 오선생','',0,0,23],['사진작가 정원','',0,0,24],['회사 동기 박대리','',0,0,25],['영상편집 나연','',0,0,26],['음향감독 도현','',0,0,27],['디자이너 해솔','',0,0,28]];
 const BG=['#7b8794','#8a7f9a','#6f8f8b','#9a8575','#6f84a3','#8b7d86'];
 const DD=[[['D+412','함께한 날']],[],[['D+88','새 프로필']],[],[['D-12','생일'],['D+731','친구가 된 날']]];
 const friends=raw.map((r,i)=>({id:i+1,n:r[0],s:r[1],a:r[2],fav:!!r[3],ord:r[4],c:P[i%5],bg:BG[i%6],dd:DD[i%5]}));
-const groups={101:{id:101,n:'친구 단톡',grp:[1,2,3,4,5,6],c:P[0],bg:BG[0],dd:[]},102:{id:102,n:'친구 단톡 (매니저)',grp:[1,2,3,4,5,6,7,8],c:P[1],bg:BG[1],dd:[]},103:{id:103,n:'가족 단톡',grp:[14,15,16],c:P[2],bg:BG[2],dd:[]}};
+const groups={101:{id:101,n:'친구 단톡',grp:[5,6,7,8,9,10,11,12],c:P[0],bg:BG[0],dd:[]},102:{id:102,n:'작업팀 단톡',grp:[20,21,22,23,24,25,26],c:P[1],bg:BG[1],dd:[]},103:{id:103,n:'가족 단톡',grp:[1,2,3,4],c:P[2],bg:BG[2],dd:[]}};
 const byId=id=>friends.find(f=>f.id==id)||groups[id];
 
 function dOff(o){const d=new Date();d.setDate(d.getDate()+o);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
@@ -62,7 +66,7 @@ function renderList(){
   $('#lsc').innerHTML=
    `<div class="sh ${open.fav?'':'cl'}" data-t="fav"><span>즐겨찾는 친구 ${fav.length}</span><span class="sp"></span><span class="ch">${IC.chev}</span></div>`+
    (open.fav?fav.map(row).join(''):'')+
-   `<div class="sh ${open.fr?'':'cl'}" data-t="fr"><span>친구 ${rest.length}</span><span class="sp"></span>
+   `<div class="sh ${open.fr?'':'cl'}" data-t="fr"><span>친구 ${FTOTAL}</span><span class="sp"></span>
      <span class="seg"><button data-s="ko" class="${sort=='ko'?'on':''}">가나다순</button><button data-s="add" class="${sort=='add'?'on':''}">친구추가순</button></span><span class="ch">${IC.chev}</span></div>`+
    (open.fr?rest.map(row).join(''):'');
 }
