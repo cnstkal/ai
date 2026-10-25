@@ -7,7 +7,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .phone{position:relative;width:100%;height:100%;background:var(--bg);overflow:hidden;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
 @media(min-width:600px){body{background:#E4E6EE}:root[data-theme="dark"] body{background:#07080A}.phone{width:390px;height:min(844px,96vh);border-radius:44px;border:1px solid var(--ln);box-shadow:0 20px 60px rgba(30,40,90,.15);padding-top:0}}
 svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
-header{display:flex;align-items:center;gap:8px;height:52px;padding:0 10px;flex:none}
+header{display:flex;align-items:center;gap:8px;height:52px;padding:0 10px;flex:none;position:relative;z-index:11}
 header .t{font-weight:700;font-size:18px;letter-spacing:-.02em;flex:1}
 .ib{width:40px;height:40px;border-radius:20px;display:grid;place-items:center;color:var(--tx)}
 .ib:active{background:var(--bg2)}
