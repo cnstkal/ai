@@ -26,7 +26,7 @@ const V={s:'list',id:null,f:'inbox',q:'',e:false,m:false};
 const gc=id=>S.contacts.find(c=>c.id==id),nm=c=>c.name||c.phone,last=c=>c.msgs[c.msgs.length-1];
 const FN={inbox:'메시지',spam:'스팸',trash:'최근 삭제된 항목',unread:'읽지 않음',draft:'임시 저장'};
 const ic={
-av:'<svg viewBox="0 0 45 45"><circle cx="22.5" cy="17" r="8" fill="#fff"/><path d="M7 41c0-9 7-14 15.500-14S38 32 38 41z" fill="#fff"/></svg>',
+av:'<svg viewBox="0 0 45 45" preserveAspectRatio="xMidYMid slice"><circle cx="22.5" cy="16" r="8.5" fill="#fff"/><path d="M4 45c0-11 8-17 18.5-17S41 34 41 45z" fill="#fff"/></svg>',
 ch:'<svg width="10" height="16" viewBox="0 0 10 16"><path d="M2 2l6 6-6 6" fill="none" stroke="#c4c4c7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 bk:'<svg width="12" height="20" viewBox="0 0 12 20"><path d="M10 2L2 10l8 8" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 fl:'<svg width="24" height="18" viewBox="0 0 24 18"><path d="M1 2h22M4 9h16M8 16h8" stroke="#000" stroke-width="2.4" stroke-linecap="round"/></svg>',
