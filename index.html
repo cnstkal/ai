@@ -280,6 +280,7 @@ function setLockLang(l){
   document.querySelectorAll('#lk-langs button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
   tickLock();
   try{localStorage.setItem('hwaho-lang',l);}catch(e){}
+  window.dispatchEvent(new Event('hwaho-language-change'));
 }
 function unlockScreen(){
   if(lockEl.classList.contains('off'))return;
@@ -301,4 +302,5 @@ lockEl.addEventListener('pointercancel',()=>{lockY=null;});
 document.addEventListener('keydown',e=>{if(!lockEl.classList.contains('off')&&(e.key==='Enter'||e.key===' ')&&!e.target.closest('#lk-langs')){e.preventDefault();unlockScreen();}});
 setLockLang(lockLang);
 setInterval(tickLock,10000);
-</script></div></body></html>
+</script></div><script src="shared/i18n.js"></script>
+</body></html>
