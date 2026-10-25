@@ -11,23 +11,8 @@ gear:'<circle cx="12" cy="12" r="3"/><path d="M12 3l2 2.5 3-.5 1 3 2.5 1.8-1 3 1
 list:'<path d="M9 6h11M9 12h11M9 18h11M4 6h.1M4 12h.1M4 18h.1"/>',chev:'<path d="M6 9l6 6 6-6"/>',x:'<circle cx="12" cy="12" r="10" fill="#8a8a8e" stroke="none"/><path d="M8 8l8 8M16 8l-8 8" stroke="#fff"/>',right:'<path d="M9 5l7 7-7 7"/>'};
 const ic=(n,s=24,f)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="${f?'currentColor':'none'}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${I[n]}</svg>`;
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const AU={a:{n:'달빛서점',c:'#7c8cf0',subs:1204},b:{n:'답개',c:'#9aa0a6',subs:579},c:{n:'미류',c:'#e08a6b',subs:332},d:{n:'새벽편지',c:'#4aa38f',subs:88},e:{n:'모래시계',c:'#b36bd6',subs:2150},u:{n:'유유',c:'#b8a0d9',subs:3}};
-const P=[
-{id:1,au:'b',t:'인어와 강아지 1',type:'장편',time:'3일 전',ch:'돌톤',ad:0,tags:['돌톤','인어','창작'],g:['#4facfe','#00c6a7'],cv:'인어와 강아지',views:363,pt:0,likes:53,rep:2,cm:4,kind:'post',
-body:['아침 공기부터 확연히 다릅니다. 오늘은 그토록 고대하던 여행을 떠나는 날이니까요. 어쩌면 생을 통틀어 가장 특별한 순간 중 하나가 될지 모릅니다.','스무 살이 되는 해에 6일 간의 여행을 떠나는 건 우리의 오랜 전통입니다. 그래야만 진정한 어른이 된다느니 하는, 허세 가득한 어른들의 무용담을 줄곧 들어왔습니다.','우리은하 내에서 여행이 가능한 수 많은 행성 중 제가 고른 곳은 단연 지구별입니다. 인어별과 상당히 유사한 환경이라 처음 보는 풍경도 낯설지 않았습니다.','도착한 첫날, 해변에서 작은 강아지 한 마리가 제 지느러미를 물끄러미 바라보았습니다. 그게 모든 이야기의 시작이었습니다.']},
-{id:2,au:'a',t:'비 오는 날의 서점',type:'단편',time:'2시간 전',ad:0,tags:['일상','서점','비'],g:['#355c7d','#c06c84'],cv:'비 오는 날의 서점',views:128,pt:500,likes:21,rep:1,cm:2,kind:'post',
-body:['창밖으로 빗줄기가 굵어지자 손님 대신 우산 냄새가 먼저 들어왔다.','주인은 계산대 뒤에서 낡은 책등을 닦으며, 오늘도 아무도 사 가지 않을 책 한 권을 골라 맨 앞줄에 세웠다.','그 책이 팔리는 날이 오면 가게 문을 닫을 거라고, 오래전부터 혼잣말처럼 말해 왔다.']},
-{id:3,au:'c',t:'여름밤 산책 일기',type:'에세이',time:'어제',ad:0,tags:['에세이','산책','여름'],g:['#f6d365','#fda085'],cv:'여름밤 산책',views:240,pt:0,likes:34,rep:3,cm:3,kind:'post',
-body:['저녁 아홉 시, 신발끈을 묶고 동네를 한 바퀴 돈다. 아무 목적이 없는 걸음이 하루 중 가장 정직하다.','편의점 앞 평상에 앉은 사람들, 개를 데리고 나온 아이, 가로등 아래 모여든 날벌레들. 같은 길이어도 매일 다른 얼굴이다.']},
-{id:4,au:'d',t:'다음에',type:'장편',time:'5일 전',ad:1,tags:['창작','여름','장마'],g:['#232526','#414345'],cv:'다음에',views:812,pt:800,likes:77,rep:5,cm:6,kind:'post',
-body:['그런 날씨를 상상해 보라. 고온다습한 장마철. 해가 없어도 뚝뚝 흐르는 땀. 더운 숨이 뻗지 못하게 가로막는 묵직한 압력.','바깥을 거닐기만 해도 인성은 바닥을 치며 타인의 끈적한 팔꿈치에라도 스치면 짜증이 솟는다. 그런 계절에, 우리는 처음 마주 앉았다.']},
-{id:5,au:'e',t:'수채화 입문 노트 #3',type:'시리즈',time:'6일 전',ad:0,tags:['그림','수채화','튜토리얼'],g:['#a8edea','#fed6e3'],cv:'수채화 입문 노트',views:1500,pt:1000,likes:120,rep:12,cm:8,kind:'series',
-body:['물 조절이 전부라고 해도 과언이 아니에요. 붓에 물을 얼마나 머금게 하느냐에 따라 같은 색도 전혀 다른 표정이 됩니다.','오늘은 번짐을 활용한 하늘 그라데이션을 연습해 봅니다. 준비물은 300g 종이, 둥근 붓 8호, 그리고 인내심입니다.']},
-{id:6,au:'a',t:'[리퀘스트] 표지 일러스트 구해요',type:'리퀘스트',time:'1주 전',ad:0,tags:['리퀘스트','일러스트','표지'],g:['#667eea','#764ba2'],cv:'표지 일러스트 의뢰',views:96,pt:0,likes:8,rep:0,cm:1,kind:'request',
-body:['단편집 표지 일러스트를 맡아주실 분을 찾습니다. 분위기는 차분한 푸른 톤, 인물 없이 사물 위주를 원해요.']},
-{id:7,au:'c',t:'달토끼 그림 모음',type:'채널',time:'2주 전',ad:0,tags:['채널','그림','달토끼'],g:['#ffecd2','#fcb69f'],cv:'달토끼 채널',views:410,pt:0,likes:45,rep:4,cm:2,kind:'channel',
-body:['매일 한 장씩 올리는 달토끼 낙서 채널입니다. 구독하시면 새 그림 알림을 받을 수 있어요.']}];
-// 유유 작가의 채널: 총 포스트 수는 127개지만 실제 화면에는 최신 10개만 표시
+const AU={u:{n:'유유',c:'#b8a0d9',subs:3}};
+const P=[];
 const UY=['#d8c5e7','#f2d8df','#b7c8e2','#e5d7c4','#c4d9d0','#d4c8ed','#e8d2bd','#b9ceda','#edd4df','#c7c9e8'];
 const YUYU_PREVIEWS={
 118:["윤호가 아침 식사를 차려 놓자 성화는 식탁에 앉아 수프가 조금 식었다고 투덜거렸다. 메이드복 차림의 윤호는 죄송하다며 그릇을 바꾸려 했지만, 성화는 이미 숟가락을 들고 있었다. “누가 버리래? 네가 다시 데우면 되잖아.” 윤호가 웃으며 고개를 숙이자 성화는 괜히 신문을 펼쳤다. 그런데 윤호가 물러나려는 순간, 성화는 무심한 척 소매 끝을 붙잡고……"],
@@ -83,7 +68,7 @@ const YUYU_127=[
 ];
 for(let i=0;i<10;i++){const ep=127-i,body=ep===127?YUYU_127:YUYU_PREVIEWS[ep];P.push({id:1127-i,au:'u',t:'나를 안아주세요 성화님 '+ep+'화',type:'포스트',time:i===0?'오늘':i===1?'어제':`${i}일 전`,ch:'유유',ad:0,tags:[],g:[UY[i],'#f8f5fa'],cv:'나를 안아주세요 성화님',views:[21,18,24,19,22,17,26,20,23,16][i],pt:0,likes:[4,1,0,2,0,0,1,0,3,0][i],rep:0,cm:[0,0,1,0,0,2,0,0,1,0][i],kind:'post',body});}
 P.sort((a,b)=>(a.au==='u'?-1:0)-(b.au==='u'?-1:0)||(a.au==='u'&&b.au==='u'?b.id-a.id:a.id-b.id));
-const C0={1127:[['익명1','5시간 전','이분 뭐하는 분이세요?',0,0],['익명2','1일 전','와 뭐짘ㅋㅋㅋㅋ',0,0],['익명3','3시간 전','근데 윤호가 누구예요?',0,0,[['익명4','본인인듯']]],['익명5','2시간 전','대단하시다',0,0],['익명6','2시간 전','(사진)',0,0]],1:[['오피디','5일 전','아직 읽기 전이지만 전 이미 이걸 좋아해요',3,1],['.','4일 전','글 분위기가 너무 좋아요ㅠㅠ',1,1],['꽁치','5일 전','앙 좋아요',1,0],['꾸엉','5일 전','이런것도 재밌게 쓰시네..... 츄베릅',1,0]]};
+const C0={1127:[['익명1','5시간 전','이분 뭐하는 분이세요?',0,0],['익명2','1일 전','와 뭐짘ㅋㅋㅋㅋ',0,0],['익명3','3시간 전','근데 윤호가 누구예요?',0,0,[['익명4','본인인듯']]],['익명5','2시간 전','대단하시다',0,0],['익명6','2시간 전','(사진)',0,0]]};
 let S={sub:{},like:{},book:{},rep:{},cm:{},clk:{}};
 try{Object.assign(S,JSON.parse(localStorage.getItem('pt1')||'{}'))}catch(e){}
 const save=()=>{try{localStorage.setItem('pt1',JSON.stringify(S))}catch(e){}};
@@ -121,16 +106,14 @@ $('#dbody').innerHTML=`<div style="color:var(--sub);font-size:15px;margin-top:22
 <div style="display:flex;flex-direction:column;gap:6px">${pv?`<div class="pn" data-act="open" data-id="${pv.id}"><span>이전</span><div><b>${esc(pv.t)}</b>${esc(pv.body[0].slice(0,18))}…</div></div>`:''}${nx?`<div class="pn" data-act="open" data-id="${nx.id}"><span>다음</span><div><b>${esc(nx.t)}</b>${esc(nx.body[0].slice(0,18))}…</div></div>`:''}</div>
 <div class="ach">${avatar(p.au,56).replace('class="av"','class="av" style="border-radius:14px;'+'"').replace('style="border-radius:14px;" style="','style="border-radius:14px;')}<div class="who"><b style="font-size:20px">${AU[p.au].n}</b><span>구독자 ${(AU[p.au].subs+(sub?1:0)).toLocaleString()}명</span></div><button class="dark ${sub?'on':''}" data-act="sub" data-au="${p.au}">${sub?'구독중':'구독'}</button></div>
 <h4>이 채널의 인기 글</h4><div class="hs">${pop.map(x=>`<div class="hc" data-act="open" data-id="${x.id}"><div>${x.ad?'<span class="badge">성인</span>':''}<b>${esc(x.t)}</b></div><p>${esc(x.body[0])}</p></div>`).join('')}</div>
-<div class="cbox"><b style="font-size:18px;cursor:pointer" data-act="cm" data-id="${p.id}">댓글 ${cs.length} ${ic('right',16)}</b>
-${cs.slice(0,1).map(c=>`<div class="cr"><div class="av" style="background:#c9ccd1;width:44px;height:44px"></div><span>${esc(c.x)}</span></div>`).join('')}
-<div class="cr" data-act="cm" data-id="${p.id}"><div class="av" style="background:#c9ccd1;width:44px;height:44px"></div><span style="color:var(--sub)">작가에게 힘이 되는 한마디 남기기...</span></div></div>`;
+`;
 const l=S.like[p.id],b=S.book[p.id],r=S.rep[p.id];
 $('#pill').innerHTML=`<button data-act="open" data-id="${pv?pv.id:''}" style="opacity:${pv?1:.3}">${ic('back',22)}</button><button data-act="like" data-id="${p.id}" class="${l?'red':''}" style="${l?'color:#f33':''}">${ic('heart',26,l)}${cnt(p,'likes')}</button><button data-act="cm" data-id="${p.id}">${ic('cmt',26)}${ccount(p.id)}</button><button data-act="book" data-id="${p.id}">${ic('book',26,b)}</button><button data-act="open" data-id="${p.id}" style="opacity:0;pointer-events:none">${ic('list',26)}</button><button data-act="open" data-id="${nx?nx.id:''}" style="opacity:${nx?1:.3}">${ic('right',22)}</button>`;}
-function renderNav(){const it=[['home','홈','home',1],['req','리퀘스트','req',0],['search','검색','search',1],['box','보관함','box',0],['me','마이메뉴','me',0]];
+function renderNav(){const it=[['home','홈','home',1],['req','리퀘스트','req',0],['search','검색','search',0],['box','보관함','box',0],['me','마이메뉴','me',0]];
 $('#nav').innerHTML=it.map(([k,l,i,en])=>`<button class="${en?(view===k||(k==='home'&&view==='detail'&&prev==='home')||(k==='search'&&view==='detail'&&prev==='search')?'on':''):'dis'}" ${en?`data-nav="${k}"`:'tabindex="-1" aria-disabled="true"'}>${ic(i,26)}${l}</button>`).join('')}
 function show(v){view=v;document.querySelectorAll('.view').forEach(e=>e.classList.remove('on'));$('#v-'+v).classList.add('on');$('#nav').style.display=v==='detail'?'none':'flex';renderNav()}
 function refresh(){if(view==='home')renderFeed();else if(view==='search')renderSearch();else if(view==='detail')renderDetail();else if(view==='ch')renderCh();if(sheetCm)renderCm()}
-function go(v){if(v==='detail'){prev=view==='detail'?prev:view}show(v);if(v==='search')setTimeout(()=>$('#q').focus(),50);refresh()}
+function go(v){if(v==='search')return;if(v==='detail'){prev=view==='detail'?prev:view}show(v);if(v==='search')setTimeout(()=>$('#q').focus(),50);refresh()}
 let openR={},sheetCm=null,sort='인기순',replyTo=null;
 function openSheet(html,tall){$('#sheet').className='sheet on'+(tall?' tall':'');$('#sheet').innerHTML=html;$('#dim').classList.add('on')}
 function closeSheet(){sheetCm=null;replyTo=null;$('#sheet').className='sheet';$('#dim').classList.remove('on')}
