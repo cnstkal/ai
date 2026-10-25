@@ -93,7 +93,7 @@
       if(excluded(n))return;
       if(!originals.has(n))originals.set(n,n.nodeValue);
       const original=originals.get(n);
-      n.nodeValue=l==='ko'?original:translateText(original,l);
+      const next=l==='ko'?original:translateText(original,l);\n      if(n.nodeValue!==next)n.nodeValue=next;
     });
     (root||document.body).querySelectorAll?.('[placeholder],[aria-label],[title]').forEach(el=>{
       if(excluded(el))return;
@@ -102,7 +102,7 @@
         let map=attrOriginals.get(el);if(!map){map={};attrOriginals.set(el,map);}
         if(!(a in map))map[a]=el.getAttribute(a);
         const val=map[a],dict=DICT[val.trim()];
-        el.setAttribute(a,l==='ko'?val:(dict?val.replace(val.trim(),dict[['en','zh','ja'].indexOf(l)]):val));
+        const next=l==='ko'?val:(dict?val.replace(val.trim(),dict[['en','zh','ja'].indexOf(l)]):val);\n        if(el.getAttribute(a)!==next)el.setAttribute(a,next);
       });
     });
   }
