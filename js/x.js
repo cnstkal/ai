@@ -57,7 +57,7 @@ H=`<div style="padding:8px 16px"><div class="row" style="gap:12px;align-items:ce
 <div style="font-size:21px;line-height:1.5;margin:14px 0 12px;white-space:pre-wrap;word-break:break-word">${link(p.text)}</div>${p.img?`<img class="im" src="${esc(p.img)}">`:''}
 <div style="color:#536471;font-size:15px;padding:12px 0;border-bottom:1px solid #eff3f4">${esc(p.t)} · 조회 <b style="color:#0f1419">${fmt(p.views)}</b></div>
 ${acts(p,rs.length)}</div>
-<div style="padding:10px 14px;border-top:1px solid #eff3f4;border-bottom:1px solid #eff3f4"><div class="row"><select id="ra" style="flex:none;width:96px;border:1px solid #cfd9de;border-radius:8px;padding:8px">${S.users.map(x=>`<option value="${x.id}" ${x.id===S.me?'selected':''}>${esc(x.name)}</option>`).join('')}</select><input id="rt" placeholder="답글 게시하기" style="border:0;outline:0;flex:2"><button class="btn pr" style="flex:none;width:64px;height:34px" data-a="reply" data-id="${p.id}">답글</button></div></div>`+rs.map(r=>post(r)).join('');}
+`+rs.map(r=>post(r)).join('');}
 else if(R.n==='profile'){const u=U(R.uid),me=u.id===S.me;fab=1;const ps=R.ptab||'posts',a=S.posts.filter(p=>p.uid===u.id);
 let l=ps==='posts'?a.filter(p=>!p.parent):ps==='replies'?a.filter(p=>p.parent):ps==='rts'?S.posts.filter(p=>p.rted):a.filter(p=>p.img);
 H=`<div class="pf"><div class="bn" style="${u.banner?`background-image:url('${esc(u.banner)}')`:''}"><button class="ic" style="left:14px" data-a="back">${I.back.replace('<svg','<svg width="22" height="22" style="color:#fff"')}</button><button class="ic" style="right:14px" data-a="tab" data-id="search">${I.search.replace('<svg','<svg width="22" height="22" style="color:#fff"')}</button></div>
