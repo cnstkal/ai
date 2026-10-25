@@ -28,12 +28,13 @@ const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function md(t){let h='',ul=false;const inl=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');t.split('\n').forEach(L=>{if(L.startsWith('- ')){if(!ul){h+='<ul>';ul=true}h+='<li>'+inl(L.slice(2))+'</li>'}else{if(ul){h+='</ul>';ul=false}if(L.startsWith('## '))h+='<h4>'+inl(L.slice(3))+'</h4>';else if(L.trim())h+='<p>'+inl(L)+'</p>'}});return h+(ul?'</ul>':'')}
 const conv=()=>S.convs.find(c=>c.id===S.cur);
 function render(){const c=conv(),m=$('#main');
+ const inp=$('#inp'),lock=!!(c&&c.id===3);inp.readOnly=lock;$('#bSend').disabled=lock;if(lock)inp.value='오 대박..';else if(inp.value==='오 대박..')inp.value='';
  if(!c||!c.msgs.length){m.innerHTML=`<div class="hero">${orb(112,'h')}<h1>무엇이든 편하게 물어보세요</h1><p>유유가 옆에서 같이 생각해 드릴게요</p></div>`;
   $('#sug').classList.add('hide');$('#sug').innerHTML=''}
  else{$('#sug').classList.add('hide');m.innerHTML=c.msgs.map((x,i)=>x.img?`<div class="m a"><img class="pic" src="${x.img}" alt="사진"></div>`:x.r==='u'?`<div class="m u"><span>${esc(x.t)}</span></div>`:`<div class="m a">${md(x.t)}<div class="acts"><button data-a="copy" data-i="${i}" aria-label="복사">${ic('copy')}</button><button data-a="redo" data-i="${i}" aria-label="다시 생성">${ic('redo')}</button><button data-a="like" data-i="${i}" class="${S.like[c.id+'-'+i]?'on':''}" aria-label="좋아요">${ic('up')}</button></div></div>`).join('')+(busy?'<div class="m a"><div class="typing"><i></i><i></i><i></i></div></div>':'');m.scrollTop=m.scrollHeight}
 }
 function title(t){return t.length>16?t.slice(0,16)+'…':t}
-function send(t){t=t.trim();if(!t||busy)return;let c=conv();if(!c){c={id:Date.now(),title:title(t),msgs:[]};S.convs.unshift(c);S.cur=c.id}
+function send(t){t=t.trim();if(!t||busy||$('#inp').readOnly)return;let c=conv();if(!c){c={id:Date.now(),title:title(t),msgs:[]};S.convs.unshift(c);S.cur=c.id}
  c.msgs.push({r:'u',t});$('#inp').value='';grow();busy=true;render();
  setTimeout(()=>{c.msgs.push({r:'a',t:reply(t)});busy=false;ST();render();list()},900)}
 function list(){const el=$('#list');if(!S.convs.length){el.innerHTML='<div class="empty">아직 대화가 없어요.<br>새 대화를 시작해 보세요.</div>';return}
