@@ -12,7 +12,7 @@ button,input,select,textarea{font:inherit;color:inherit;border:0;background:none
 .cap svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .cap button:disabled svg{opacity:.4}
 .hd{display:flex;align-items:center;padding:8px 0 8px 6px;gap:6px}
-.logo{color:#fff;font:900 24px/1 Arial;width:34px;letter-spacing:-3px}
+.logo{color:#fff;font:900 20px/1 -apple-system,'Apple SD Gothic Neo','Pretendard',sans-serif;min-width:34px;letter-spacing:-1px}
 .sb{flex:1;display:flex;background:#fff;height:38px;align-items:center;border:1px solid #fff}
 .sb .mn{width:36px;text-align:center;color:#999;font-size:22px;border-right:1px solid #ddd;line-height:36px}
 .sb input{flex:1;min-width:0;padding:0 8px;font-size:14px}
