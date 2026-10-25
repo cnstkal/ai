@@ -18,7 +18,7 @@
   const ov = document.createElement('div');
   ov.id = 'yy-ov';
   ov.innerHTML = '<div id="yy-bub"></div><div id="yy-orb"></div>';
-  const host = document.getElementById('phone') || document.body;
+  const host = document.getElementById('phone') || document.getElementById('screen') || document.body;
   host.appendChild(ov);
 
   let lines = [], idx = 0, done = null;
