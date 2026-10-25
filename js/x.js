@@ -35,6 +35,10 @@ const save=()=>{try{localStorage.setItem('xsim5',JSON.stringify(S))}catch(e){toa
 const U=id=>S.users.find(u=>u.id===id)||{name:'(삭제됨)',handle:'deleted',av:AV('?','#999')};
 const PO=id=>S.posts.find(p=>p.id===id);
 const kids=id=>S.posts.filter(p=>p.parent===id);
+/* 상세 화면 시간·조회수 표시: "오후 12:14 • 2026.10.25 • 조회 1.6만회" */
+const viewsKo=n=>n>=1e4?(n/1e4).toFixed(1)+'만':Number(n||0).toLocaleString('ko-KR');
+function detailTime(t){const m=String(t||'').match(/^(\d+)\s*(분|시간|일)/);let d=new Date();if(m){const n=+m[1],ms=m[2]==='분'?6e4:m[2]==='시간'?36e5:864e5;d=new Date(Date.now()-n*ms)}
+const h=d.getHours(),mm=String(d.getMinutes()).padStart(2,'0');return `${h<12?'오전':'오후'} ${h%12||12}:${mm} • ${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`}
 const fmt=n=>n>=1e4?(n/1e3).toFixed(0)+'K':n>=1e3?(n/1e3).toFixed(1)+'K':n;
 let R={n:'home',tab:'rec'},stack=[],tmp='',q='';
 const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',1800)};
@@ -55,7 +59,7 @@ else if(R.n==='detail'){const p=PO(R.id);if(!p){back();return}const u=U(p.uid),r
 T=`<div class="hd"><button data-a="back">${I.back.replace('<svg','<svg width="24" height="24"')}</button><span style="flex:1"></span></div>`;
 H=`<div style="padding:8px 16px"><div class="row" style="gap:12px;align-items:center"><img class="av" style="width:48px;height:48px;flex:none;border-radius:50%" src="${esc(u.av)}" data-a="prof" data-id="${p.uid}"><div style="flex:1;line-height:22px;min-width:0"><div class="nm" style="font-size:17px"><b style="max-width:none">${esc(u.name)}</b>${u.locked?I.lock.replace('<svg','<svg width="16" height="16"'):''}${u.verified?I.chk:''}</div><span style="color:#536471;font-size:15px">@${esc(u.handle)}</span></div><button data-a="pm" data-id="${p.id}" style="flex:none;color:#536471">${I.more}</button></div>
 <div style="font-size:21px;line-height:1.5;margin:14px 0 12px;white-space:pre-wrap;word-break:break-word">${link(p.text)}</div>${p.img?`<img class="im" src="${esc(p.img)}">`:''}
-<div style="color:#536471;font-size:15px;padding:12px 0;border-bottom:1px solid #eff3f4">${esc(p.t)} · 조회 <b style="color:#0f1419">${fmt(p.views)}</b></div>
+<div style="color:#536471;font-size:15px;padding:12px 0;border-bottom:1px solid #eff3f4">${detailTime(p.t)} • 조회 <b style="color:#0f1419">${viewsKo(p.views)}회</b></div>
 ${acts(p,rs.length)}</div>
 `+rs.map(r=>post(r)).join('');}
 else if(R.n==='profile'){const u=U(R.uid),me=u.id===S.me;fab=1;const ps=R.ptab||'posts',a=S.posts.filter(p=>p.uid===u.id);
