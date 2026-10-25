@@ -73,7 +73,7 @@ function renderList(){
 $('#lsc').addEventListener('click',e=>{
   const s=e.target.closest('[data-s]');if(s){sort=s.dataset.s;renderList();return}
   const t=e.target.closest('[data-t]');if(t){open[t.dataset.t]=!open[t.dataset.t];renderList();return}
-  const r=e.target.closest('[data-id]');if(r)go('profile',+r.dataset.id);
+  /* 프로필 상세 열기 비활성화 */
 });
 
 /* tabs */
