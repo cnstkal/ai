@@ -49,7 +49,7 @@ $('#pop').innerHTML=[['img','사진 보관함'],['cam','카메라'],['file','파
 $('#bMenu').onclick=()=>drawer(true);$('#dClose').onclick=()=>drawer(false);$('#scrim').onclick=()=>{drawer(false);$('#pop').classList.remove('on')};
 $('#bNew').onclick=newChat;$('#dNew').onclick=newChat;
 const openS=o=>{$('#settings').classList.toggle('on',o);if(o){drawer(false);$('#pop').classList.remove('on')}};
-$('#bSet').onclick=()=>openS(true);$('#dSet').onclick=()=>openS(true);$('#sBack').onclick=()=>openS(false);
+$('#sBack').onclick=()=>openS(false);
 $('#bSend').onclick=()=>send($('#inp').value);
 $('#inp').oninput=grow;$('#inp').onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();send($('#inp').value)}};
 $('#bPlus').onclick=()=>$('#pop').classList.toggle('on');
