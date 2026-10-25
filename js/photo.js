@@ -23,10 +23,10 @@
       dtime=document.getElementById("dtime"),cur=0;
   photos.forEach(function(p,i){
     var b=document.createElement("button");b.className="cell";b.setAttribute("aria-label","사진 "+(i+1));
-    b.innerHTML='<img alt="" src="'+p.src+'">'+(p.video?'<span class="dur">'+p.video+'</span>':"");
+    b.innerHTML='<img alt="" loading="lazy" decoding="async" src="'+p.src+'">'+(p.video?'<span class="dur">'+p.video+'</span>':"");
     b.onclick=function(){open(i)};grid.appendChild(b);
     var t=document.createElement("button");t.setAttribute("aria-label","사진 "+(i+1));
-    t.innerHTML='<img alt="" src="'+p.src+'">';t.onclick=function(){show(i,true)};strip.appendChild(t);
+    t.innerHTML='<img alt="" loading="lazy" decoding="async" src="'+p.src+'">';t.onclick=function(){show(i,true)};strip.appendChild(t);
   });
   function show(i,smooth){
     if(i<0||i>=photos.length)return;
