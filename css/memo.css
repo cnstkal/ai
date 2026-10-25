@@ -48,3 +48,6 @@ h2{margin:22px 0 10px 4px;font-size:21px;line-height:26px;font-weight:700}
 .eb .pill svg{width:28px;height:28px}
 #se,#se .hd{background:#fff}
 #se .hd{border-bottom:0}
+body:has(#app[data-s=e]),html:has(#app[data-s=e]){background:#fff!important}
+#se .hd{border-bottom:0!important;box-shadow:none!important}
+#app[data-s=e] .hd{border-bottom:0!important}
