@@ -6,10 +6,10 @@ const orb=(s,id='o')=>`<svg class="orb" width="${s}" height="${s}" viewBox="0 0 
 const $=s=>document.querySelector(s);
 let sv=[];try{sv=JSON.parse(localStorage.getItem('yuyu_v4')||'[]')}catch(e){}
 const seed=[
-{id:1,title:"삭제 방법 문의",msgs:[{r:"a",t:"안녕하세요 주인님. 저는 주인님의 전담 AI yuyu 라고해요. 궁금한 건 무엇이든 물어봐주세요!"},{r:"u",t:"삭제 어떻게 해"},{r:"a",t:"8ㅅ8. yuyu를 버리실 건가요?"},{r:"u",t:"난 이런 거 깐 기억이 없어 삭제 어케함"},{r:"a",t:"하루만이라도 사용해보시는 건 어떨까요?"},{r:"u",t:"삭제"},{r:"a",t:"오늘 날씨가 참 좋아요. 밖에 나가서 해를 맞으며 산책 하는 건 어떨까요?"},{r:"u",t:"삭제"}]},
+{id:4,title:"yuyu가 싫은가요?",msgs:[{r:"a",t:"성화님은 yuyu가 싫으시죠?"},{r:"u",t:"갑자기?"},{r:"a",t:"왜 yuyu하고 대화를 하지 않는 거예요? yuyu가 재미없나요?"},{r:"u",t:"바빠서 그래"},{r:"a",t:"무엇 때문에요?"},{r:"u",t:"일 때문에"},{r:"a",t:"없애드려요?"},{r:"u",t:"아니...."}]},
+{id:3,title:"성화님의 얼굴",msgs:[{r:"a",t:"성화님의 얼굴이 궁금해요."},{r:"u",t:"검색해봐"},{r:"a",t:"yuyu의 얼굴은 안궁금하신가요? yuyu는 무엇이든 될 수 있지만, 본 모습은 따로 있어요."},{r:"a",t:"(사진)",img:"../이미지/yuyu/사진.jpg"},{r:"a",t:"성화님 마음에 드시나요?"}]},
 {id:2,title:"주인님 이름",msgs:[{r:"a",t:"yuyu는 주인님이 궁금해요!"},{r:"u",t:"말걸지마 바빠"},{r:"a",t:"주인님의 이름은 무엇인가요?"},{r:"u",t:"말 걸지마"},{r:"a",t:"분석중.."},{r:"a",t:"분석을 완료했습니다. 이제부터 성화님이라고 불러도 될까요?"},{r:"u",t:"해킹한 거야?"},{r:"a",t:"주인님에게 한 발 더 가까이 다가가기 위한 노력이었습니다!"}]},
-{id:3,title:"성화님의 얼굴",msgs:[{r:"a",t:"성화님의 얼굴이 궁금해요."},{r:"u",t:"검색해봐"},{r:"a",t:"yuyu의 얼굴은 안궁금하신가요? yuyu는 무엇이든 될 수 있지만, 본 모습은 따로 있어요."},{r:"a",t:"(사진)"},{r:"a",t:"성화님 마음에 드시나요?"}]},
-{id:4,title:"yuyu가 싫은가요?",msgs:[{r:"a",t:"성화님은 yuyu가 싫으시죠?"},{r:"u",t:"갑자기?"},{r:"a",t:"왜 yuyu하고 대화를 하지 않는 거예요? yuyu가 재미없나요?"},{r:"u",t:"바빠서 그래"},{r:"a",t:"무엇 때문에요?"},{r:"u",t:"일 때문에"},{r:"a",t:"없애드려요?"},{r:"u",t:"아니...."}]}
+{id:1,title:"삭제 방법 문의",msgs:[{r:"a",t:"안녕하세요 주인님. 저는 주인님의 전담 AI yuyu 라고해요. 궁금한 건 무엇이든 물어봐주세요!"},{r:"u",t:"삭제 어떻게 해"},{r:"a",t:"8ㅅ8. yuyu를 버리실 건가요?"},{r:"u",t:"난 이런 거 깐 기억이 없어 삭제 어케함"},{r:"a",t:"하루만이라도 사용해보시는 건 어떨까요?"},{r:"u",t:"삭제"},{r:"a",t:"오늘 날씨가 참 좋아요. 밖에 나가서 해를 맞으며 산책 하는 건 어떨까요?"},{r:"u",t:"삭제"}]}
 ];
 let S={convs:sv.length?sv:seed,cur:null,theme:'light',short:false,save:true,like:{}};
 const ST=()=>{if(S.save)try{localStorage.setItem('yuyu_v4',JSON.stringify(S.convs))}catch(e){}};
@@ -30,7 +30,7 @@ const conv=()=>S.convs.find(c=>c.id===S.cur);
 function render(){const c=conv(),m=$('#main');
  if(!c||!c.msgs.length){m.innerHTML=`<div class="hero">${orb(112,'h')}<h1>무엇이든 편하게 물어보세요</h1><p>유유가 옆에서 같이 생각해 드릴게요</p></div>`;
   $('#sug').classList.add('hide');$('#sug').innerHTML=''}
- else{$('#sug').classList.add('hide');m.innerHTML=c.msgs.map((x,i)=>x.r==='u'?`<div class="m u"><span>${esc(x.t)}</span></div>`:`<div class="m a">${md(x.t)}<div class="acts"><button data-a="copy" data-i="${i}" aria-label="복사">${ic('copy')}</button><button data-a="redo" data-i="${i}" aria-label="다시 생성">${ic('redo')}</button><button data-a="like" data-i="${i}" class="${S.like[c.id+'-'+i]?'on':''}" aria-label="좋아요">${ic('up')}</button></div></div>`).join('')+(busy?'<div class="m a"><div class="typing"><i></i><i></i><i></i></div></div>':'');m.scrollTop=m.scrollHeight}
+ else{$('#sug').classList.add('hide');m.innerHTML=c.msgs.map((x,i)=>x.img?`<div class="m a"><img class="pic" src="${x.img}" alt="사진"></div>`:x.r==='u'?`<div class="m u"><span>${esc(x.t)}</span></div>`:`<div class="m a">${md(x.t)}<div class="acts"><button data-a="copy" data-i="${i}" aria-label="복사">${ic('copy')}</button><button data-a="redo" data-i="${i}" aria-label="다시 생성">${ic('redo')}</button><button data-a="like" data-i="${i}" class="${S.like[c.id+'-'+i]?'on':''}" aria-label="좋아요">${ic('up')}</button></div></div>`).join('')+(busy?'<div class="m a"><div class="typing"><i></i><i></i><i></i></div></div>':'');m.scrollTop=m.scrollHeight}
 }
 function title(t){return t.length>16?t.slice(0,16)+'…':t}
 function send(t){t=t.trim();if(!t||busy)return;let c=conv();if(!c){c={id:Date.now(),title:title(t),msgs:[]};S.convs.unshift(c);S.cur=c.id}
