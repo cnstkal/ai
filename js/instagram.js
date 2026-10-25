@@ -56,15 +56,15 @@ const p={id:'p'+ui+'_'+i,u,n:i==0&&u=='u1'?12:(i%3==0?1:i%3==1?3:5),ratio:i%2?1:
 PO.push(p);PM[p.id]=p}});
 // 내 게시글 (이미지/인스타그램/게시글/_starhwa_/번호 폴더)
 const REAL_ME=[
-{id:"me_1",u:"me",folder:"1",files:["HVZhs5XbMAEvEpB.jpg", "HVZhs5abYAAcZ9m.jpg", "HVZhs5faAAAfARb.jpg", "HVZhvcQaEAAq2yw.jpg", "HVZhvcTbQAA12tw.jpg"],n:5,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,9,24,12).getTime())/H),cap:"",mus:"ATEEZ - Drip",lk:0,sv:0},
-{id:"me_2",u:"me",folder:"2",files:["HUrOhekaAAEIEdy.jpg", "HUrOhzabkAAZPgL.jpg", "HUrOkr6bAAAFtXh.jpg", "HUrOlL4bAAAh7ZW.jpg", "HUrOoSdbIAAyBBJ.jpg"],n:5,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,9,15,12).getTime())/H),cap:"난 너랑 있는 게 제일 좋아",mus:"",lk:0,sv:0},
-{id:"me_3",u:"me",folder:"3",files:["HSVxAxSbAAAUSRC.jpg"],n:1,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,8,15,12).getTime())/H),cap:"바르셀로나에서",mus:"",lk:0,sv:0},
-{id:"me_4",u:"me",folder:"4",files:["HPmuXbda4AE-AlC.jpg"],n:1,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,7,13,12).getTime())/H),cap:"I think about you a lot",mus:"",lk:0,sv:0},
-{id:"me_5",u:"me",folder:"5",files:["HPNEXPwbEAAWht6.jpg", "HPNEXRSbsAAviod.jpg"],n:2,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,7,8,12).getTime())/H),cap:"",mus:"",lk:0,sv:0},
-{id:"me_6",u:"me",folder:"6",files:["HNM3shsaYAAaUz7.jpg", "HNM3sijbEAU1HI9.jpg"],n:2,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,15,12).getTime())/H),cap:"행운을 가져다 주렴",mus:"",lk:0,sv:0},
-{id:"me_7",u:"me",folder:"7",files:["HM3sDYibUAE3r3w.jpg", "HM3sDZdbAAA5JTE.jpg", "HM3sEWjaoAAADsz.jpg"],n:3,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,10,12).getTime())/H),cap:"Bring him to ATINY 🫶🏻",mus:"",lk:0,sv:0},
-{id:"me_8",u:"me",folder:"8",files:["HMjRan5bsAEi-pK.jpg"],n:1,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,6,12).getTime())/H),cap:"A heart full of love",mus:"",lk:0,sv:0},
-{id:"me_9",u:"me",folder:"9",files:["HMYxu7QaAAA7pf9.jpg", "HMYxuUwbIAAPo1Q.jpg", "HMYxvaVaAAAMTcY.jpg"],n:3,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,4,12).getTime())/H),cap:"배드 야~~호",mus:"ATEEZ - BAD",lk:0,sv:0}
+{id:"me_1",u:"me",folder:"1",files:["HVZhs5XbMAEvEpB.jpg", "HVZhs5abYAAcZ9m.jpg", "HVZhs5faAAAfARb.jpg", "HVZhvcQaEAAq2yw.jpg", "HVZhvcTbQAA12tw.jpg"],n:5,ratio:.8,seed:0,likes:355594,cm:4776,sh:0,h:Math.max(0,(NOW-new Date(2026,9,24,12).getTime())/H),cap:"",mus:"ATEEZ - Drip",lk:0,sv:0},
+{id:"me_2",u:"me",folder:"2",files:["HUrOhekaAAEIEdy.jpg", "HUrOhzabkAAZPgL.jpg", "HUrOkr6bAAAFtXh.jpg", "HUrOlL4bAAAh7ZW.jpg", "HUrOoSdbIAAyBBJ.jpg"],n:5,ratio:.8,seed:0,likes:329472,cm:4401,sh:0,h:Math.max(0,(NOW-new Date(2026,9,15,12).getTime())/H),cap:"난 너랑 있는 게 제일 좋아",mus:"",lk:0,sv:0},
+{id:"me_3",u:"me",folder:"3",files:["HSVxAxSbAAAUSRC.jpg"],n:1,ratio:.8,seed:0,likes:388644,cm:5473,sh:0,h:Math.max(0,(NOW-new Date(2026,8,15,12).getTime())/H),cap:"바르셀로나에서",mus:"",lk:0,sv:0},
+{id:"me_4",u:"me",folder:"4",files:["HPmuXbda4AE-AlC.jpg"],n:1,ratio:.8,seed:0,likes:374884,cm:5800,sh:0,h:Math.max(0,(NOW-new Date(2026,7,13,12).getTime())/H),cap:"I think about you a lot",mus:"",lk:0,sv:0},
+{id:"me_5",u:"me",folder:"5",files:["HPNEXPwbEAAWht6.jpg", "HPNEXRSbsAAviod.jpg"],n:2,ratio:.8,seed:0,likes:358155,cm:4147,sh:0,h:Math.max(0,(NOW-new Date(2026,7,8,12).getTime())/H),cap:"",mus:"",lk:0,sv:0},
+{id:"me_6",u:"me",folder:"6",files:["HNM3shsaYAAaUz7.jpg", "HNM3sijbEAU1HI9.jpg"],n:2,ratio:.8,seed:0,likes:353610,cm:4744,sh:0,h:Math.max(0,(NOW-new Date(2026,6,15,12).getTime())/H),cap:"행운을 가져다 주렴",mus:"",lk:0,sv:0},
+{id:"me_7",u:"me",folder:"7",files:["HM3sDYibUAE3r3w.jpg", "HM3sDZdbAAA5JTE.jpg", "HM3sEWjaoAAADsz.jpg"],n:3,ratio:.8,seed:0,likes:318909,cm:5569,sh:0,h:Math.max(0,(NOW-new Date(2026,6,10,12).getTime())/H),cap:"Bring him to ATINY 🫶🏻",mus:"",lk:0,sv:0},
+{id:"me_8",u:"me",folder:"8",files:["HMjRan5bsAEi-pK.jpg"],n:1,ratio:.8,seed:0,likes:390376,cm:5894,sh:0,h:Math.max(0,(NOW-new Date(2026,6,6,12).getTime())/H),cap:"A heart full of love",mus:"",lk:0,sv:0},
+{id:"me_9",u:"me",folder:"9",files:["HMYxu7QaAAA7pf9.jpg", "HMYxuUwbIAAPo1Q.jpg", "HMYxvaVaAAAMTcY.jpg"],n:3,ratio:.8,seed:0,likes:317704,cm:4105,sh:0,h:Math.max(0,(NOW-new Date(2026,6,4,12).getTime())/H),cap:"배드 야~~호",mus:"ATEEZ - BAD",lk:0,sv:0}
 ];
 for(let i=PO.length-1;i>=0;i--)if(PO[i].u==='me')PO.splice(i,1);
 REAL_ME.forEach(p=>{PO.push(p);PM[p.id]=p});
