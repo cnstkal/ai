@@ -38,9 +38,9 @@ posts:[
 {id:'p3',uid:'u4',t:'6분',text:'아시발개추워',img:'',likes:0,rt:0,views:5},
 {id:'p4',uid:'u5',t:'7분',text:'Closing sleepy eyes as gentle fingers stroke fluffy cheeks on a cozy afternoon ✨',img:IMG('#d9a066','#f5e3cc','🐕'),likes:0,rt:0,views:0},
 {id:'p8',uid:'u3',t:'1분',text:'나도 사야겠다',img:'',likes:0,rt:0,views:2,parent:'p2'},{id:'p10',uid:'u6',t:'1분',text:'직캠 떴다 ㅠㅠ 1분 56초부터 눈 마주침 실화냐 이거 진짜 나만 봄?',img:'',likes:34,rt:3,views:812},{id:'p11',uid:'u7',t:'3시간',text:'신곡 새벽 3시에 들었는데 후렴에서 그냥 소리 질렀다... 이웃 항의 들어올 듯 ㅋㅋ',img:'',likes:128,rt:9,views:4300},{id:'p12',uid:'u8',t:'5시간',text:'오늘 퇴근길 지하철 광고판 보고 한참 서 있었음. 나 진짜 이 사람 없으면 안 되는 듯',img:'',likes:276,rt:14,views:9100},{id:'p13',uid:'u9',t:'8시간',text:'티켓팅 또 실패. 새로고침 누르다가 손가락 아픔. 다음 공연은 꼭 간다 진짜로',img:'',likes:63,rt:2,views:1500},{id:'p14',uid:'u10',t:'12시간',text:'루미너스 이번 앨범 포토카드 교환 원하는 분 댓글 주세요 (조건은 1:1 채팅으로)',img:'',likes:41,rt:6,views:3300},{id:'p15',uid:'u11',t:'1일',text:'코발트 노래 알고리즘에 떠서 듣기 시작했는데 벌써 이번 주 세 번째 듣는 중... 입덕 되는 건가',img:'',likes:19,rt:1,views:640},{id:'p16',uid:'u7',t:'1일',text:'오늘 하루 종일 뮤비만 돌려봄. 아무것도 안 함. 행복함',img:'',likes:88,rt:4,views:2100},{id:'p17',uid:'u6',t:'2일',text:'누가 이 장면 gif 만들어줘요 ㅠ 제발',img:'',likes:57,rt:11,views:1700},{id:'p18',uid:'u8',t:'2일',text:'스텔라 컴백 D-3 🌟 다들 스트리밍 목표 채웠어요?',img:'',likes:203,rt:22,views:6800},{id:'p19',uid:'u9',t:'3일',text:'콘서트 후기 쓰려고 했는데 정리가 안 됨... 그냥 좋았다는 말밖에 안 나옴',img:'',likes:77,rt:5,views:2600},{id:'p20',uid:'u11',t:'3일',text:'친구가 최애 있냐고 물어봐서 이번 주엔 하준이라고 답함 ㅋㅋ',img:'',likes:46,rt:3,views:1200}]});
-let S;try{S=JSON.parse(localStorage.getItem('xsim'))}catch(e){}
+let S;try{S=JSON.parse(localStorage.getItem('xsim2'))}catch(e){}
 if(!S||!S.users)S=seed();
-const save=()=>{try{localStorage.setItem('xsim',JSON.stringify(S))}catch(e){toast('저장 실패(용량 초과)')}};
+const save=()=>{try{localStorage.setItem('xsim2',JSON.stringify(S))}catch(e){toast('저장 실패(용량 초과)')}};
 const U=id=>S.users.find(u=>u.id===id)||{name:'(삭제됨)',handle:'deleted',av:AV('?','#999')};
 const PO=id=>S.posts.find(p=>p.id===id);
 const kids=id=>S.posts.filter(p=>p.parent===id);
