@@ -23,7 +23,8 @@ const R=[
 {k:['점심','저녁','밥','메뉴'],a:['## 메뉴 추천\n- 가볍게: 비빔국수, 샐러드 파스타\n- 든든하게: 제육덮밥, 순두부찌개\n- 기분 전환: 떡볶이와 튀김\n오늘 컨디션이 어떤지 알려주면 하나로 골라드릴게요.']}];
 const F=['흥미로운 질문이에요. 조금 더 구체적으로 알려주시면 더 잘 도와드릴 수 있어요. 어떤 상황인지 한 줄만 더 말해줄래요?','## 이렇게 생각해볼 수 있어요\n- 먼저 **목표**를 한 문장으로 적어보기\n- 지금 가진 것과 부족한 것을 나누기\n- 가장 작은 첫 단계를 정하기\n어느 부분부터 같이 볼까요?','네, 이해했어요. 핵심만 짚어보면 **우선순위를 정하는 것**이 가장 중요해 보여요. 이어서 자세히 이야기해볼까요?','좋은 포인트예요. 비슷한 상황에서는 **한 번에 하나씩** 해결하는 방식이 잘 맞는 편이에요. 원하는 방향을 알려주세요.'];
 let fi=0,busy=false;
-function reply(t,regen){const l=t.toLowerCase();let c=R.find(r=>r.k.some(k=>l.includes(k)));let a;if(c){a=c.a[Math.floor(Math.random()*c.a.length)]}else{a=F[fi++%F.length]}if(S.short)a=a.split('\n').filter(x=>!x.startsWith('- ')).join('\n');return a}
+function hsh(t){let h=0;for(const ch of t)h=(h*31+ch.charCodeAt(0))|0;return Math.abs(h)}
+function reply(t,regen){const l=t.toLowerCase();let c=R.find(r=>r.k.some(k=>l.includes(k)));let a;const h=hsh(t);if(c){a=c.a[h%c.a.length]}else{a=F[h%F.length]}if(S.short)a=a.split('\n').filter(x=>!x.startsWith('- ')).join('\n');return a}
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 function md(t){let h='',ul=false;const inl=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');t.split('\n').forEach(L=>{if(L.startsWith('- ')){if(!ul){h+='<ul>';ul=true}h+='<li>'+inl(L.slice(2))+'</li>'}else{if(ul){h+='</ul>';ul=false}if(L.startsWith('## '))h+='<h4>'+inl(L.slice(3))+'</h4>';else if(L.trim())h+='<p>'+inl(L)+'</p>'}});return h+(ul?'</ul>':'')}
 const conv=()=>S.convs.find(c=>c.id===S.cur);
@@ -35,7 +36,7 @@ function render(){const c=conv(),m=$('#main');
 }
 function title(t){return t.length>16?t.slice(0,16)+'…':t}
 function send(t){t=t.trim();if(!t||busy||$('#inp').readOnly)return;let c=conv();if(!c){c={id:Date.now(),title:title(t),msgs:[]};S.convs.unshift(c);S.cur=c.id}
- c.msgs.push({r:'u',t});$('#inp').value='';grow();busy=true;render();
+ c.msgs.push({r:'u',t});$('#inp').value='';grow();busy=true;ST();render();
  setTimeout(()=>{c.msgs.push({r:'a',t:reply(t)});busy=false;ST();render();list()},900)}
 function list(){const el=$('#list');if(!S.convs.length){el.innerHTML='<div class="empty">아직 대화가 없어요.<br>새 대화를 시작해 보세요.</div>';return}
  el.innerHTML=S.convs.map(c=>{const l=c.msgs[c.msgs.length-1];return`<div class="it ${c.id===S.cur?'cur':''}"><button class="o" data-o="${c.id}"><div class="ti">${esc(c.title)}</div><div class="pv">${l?esc(l.t.replace(/[#*\-]/g,'').trim().split('\n')[0]):'새 대화'}</div></button><button class="ib" data-m="${c.id}" aria-label="메뉴">${ic('more')}</button></div>`}).join('')}
