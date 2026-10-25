@@ -54,6 +54,21 @@ const PO=[],PM={};
 Object.keys(U).forEach((u,ui)=>{const n=9;for(let i=0;i<n;i++){const c=i%3==2?[4,8,12][i%3]:(i%3==1?1:(u=='u1'?12:3)),r=R(ui*100+i);
 const p={id:'p'+ui+'_'+i,u,n:i==0&&u=='u1'?12:(i%3==0?1:i%3==1?3:5),ratio:i%2?1:.8,seed:ui*17+i*5+2,likes:Math.floor(200+r()*90000),cm:Math.floor(3+r()*900),sh:Math.floor(r()*3000),h:ui*7+i*30+(u=='me'?20:3)+Math.floor(r()*20),cap:CAP[(ui+i)%8],mus:i%4==0?MUS[(ui+i)%3]:'',lk:0,sv:0};
 PO.push(p);PM[p.id]=p}});
+// 내 게시글 (이미지/인스타그램/게시글/_starhwa_/번호 폴더)
+const REAL_ME=[
+{id:"me_1",u:"me",folder:"1",files:["HVZhs5XbMAEvEpB.jpg", "HVZhs5abYAAcZ9m.jpg", "HVZhs5faAAAfARb.jpg", "HVZhvcQaEAAq2yw.jpg", "HVZhvcTbQAA12tw.jpg"],n:5,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,9,24,12).getTime())/H),cap:"",mus:"ATEEZ - Drip",lk:0,sv:0},
+{id:"me_2",u:"me",folder:"2",files:["HUrOhekaAAEIEdy.jpg", "HUrOhzabkAAZPgL.jpg", "HUrOkr6bAAAFtXh.jpg", "HUrOlL4bAAAh7ZW.jpg", "HUrOoSdbIAAyBBJ.jpg"],n:5,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,9,15,12).getTime())/H),cap:"난 너랑 있는 게 제일 좋아",mus:"",lk:0,sv:0},
+{id:"me_3",u:"me",folder:"3",files:["HSVxAxSbAAAUSRC.jpg"],n:1,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,8,15,12).getTime())/H),cap:"바르셀로나에서",mus:"",lk:0,sv:0},
+{id:"me_4",u:"me",folder:"4",files:["HPmuXbda4AE-AlC.jpg"],n:1,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,7,13,12).getTime())/H),cap:"I think about you a lot",mus:"",lk:0,sv:0},
+{id:"me_5",u:"me",folder:"5",files:["HPNEXPwbEAAWht6.jpg", "HPNEXRSbsAAviod.jpg"],n:2,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,7,8,12).getTime())/H),cap:"",mus:"",lk:0,sv:0},
+{id:"me_6",u:"me",folder:"6",files:["HNM3shsaYAAaUz7.jpg", "HNM3sijbEAU1HI9.jpg"],n:2,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,15,12).getTime())/H),cap:"행운을 가져다 주렴",mus:"",lk:0,sv:0},
+{id:"me_7",u:"me",folder:"7",files:["HM3sDYibUAE3r3w.jpg", "HM3sDZdbAAA5JTE.jpg", "HM3sEWjaoAAADsz.jpg"],n:3,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,10,12).getTime())/H),cap:"Bring him to ATINY 🫶🏻",mus:"",lk:0,sv:0},
+{id:"me_8",u:"me",folder:"8",files:["HMjRan5bsAEi-pK.jpg"],n:1,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,6,12).getTime())/H),cap:"A heart full of love",mus:"",lk:0,sv:0},
+{id:"me_9",u:"me",folder:"9",files:["HMYxu7QaAAA7pf9.jpg", "HMYxuUwbIAAPo1Q.jpg", "HMYxvaVaAAAMTcY.jpg", "HMjRan5bsAEi-pK.jpg"],n:4,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,4,12).getTime())/H),cap:"배드 야~~호",mus:"ATEEZ - BAD",lk:0,sv:0}
+];
+for(let i=PO.length-1;i>=0;i--)if(PO[i].u==='me')PO.splice(i,1);
+REAL_ME.forEach(p=>{PO.push(p);PM[p.id]=p});
+
 const S={};[['u1',3],['u2',2],['u3',3],['u4',2],['u5',2],['u6',3]].forEach(([u,n],i)=>S[u]=Array.from({length:n},(_,j)=>({seed:200+i*9+j,h:j+i+1,t:j==0&&i%2==0?CAP[i]:''})));
 const seen=new Set(['u3']);
 const T=(u,un,msgs,status)=>({u,un,status:status||'',msgs});
@@ -75,7 +90,8 @@ const hasSt=u=>!!S[u];
 function A(u,size,ringOk=true){const a=av(U[u].a);if(ringOk&&hasSt(u))return`<span class="rg ${seen.has(u)?'sn':''}" style="--s:${size}px"><img src="${a}"></span>`;return`<img class="pa" style="--s:${size}px" src="${a}">`}
 const ab=(u,size)=>`<button data-act="${hasSt(u)?'story':'prof'}" data-u="${u}">${A(u,size)}</button>`;
 /* ---------- posts ---------- */
-function postHTML(p){const u=U[p.u],imgs=Array.from({length:p.n},(_,i)=>`<img src="${art(p.seed+i*3,800,Math.round(800/p.ratio))}" alt="">`).join('');
+const PHOTO=(p,i)=>p.files?encodeURI('../이미지/인스타그램/게시글/_starhwa_/'+p.folder+'/'+p.files[i]):art(p.seed+i*3,800,Math.round(800/p.ratio));
+function postHTML(p){const u=U[p.u],imgs=Array.from({length:p.n},(_,i)=>`<img src="${PHOTO(p,i)}" alt="">`).join('');
 return`<article data-id="${p.id}"><div class="ph">${ab(p.u,40)}<div class="pn" data-act="prof" data-u="${p.u}"><b>${u.id}${u.v?VB:''}</b>${p.mus?`<small>${ic('mus',12)}${p.mus}</small>`:''}</div><button>${ic('menu',24)}</button></div>
 <div class="mw" data-act="dbl" style="aspect-ratio:${p.ratio}"><div class="car">${imgs}</div>${p.n>1?`<i class="cnt">1/${p.n}</i>`:''}</div>
 ${p.n>1?`<div class="dots">${Array.from({length:p.n},(_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div>`:''}
@@ -96,7 +112,7 @@ return`<div class="hd">${self?`<div class="logo" data-act="acct" style="font-siz
 <div style="margin-top:10px;font-size:14px;line-height:1.4;white-space:pre-line">${o.bio}</div></div>
 <div class="btns">${self?'<button>프로필 편집</button><button>프로필 공유</button>':`<button>팔로잉 ${ic('dn',16)}</button><button data-act="chat" data-u="${uid}">메시지</button>`}<button class="s">${ic('plus',18)}</button></div>
 <div class="tabs"><div class="on">${ic('grid',26,'currentColor')}</div><div>${ic('reel',25)}</div><div>${ic('tag',25)}</div></div>
-<div class="grid">${ps.map(p=>`<div class="gi" data-act="post" data-id="${p.id}"><img src="${art(p.seed,600,800)}">${p.n>1?ic('cp',20):''}</div>`).join('')}</div></div>`}
+<div class="grid">${ps.map(p=>`<div class="gi" data-act="post" data-id="${p.id}"><img src="${p.files?PHOTO(p,0):art(p.seed,600,800)}">${p.n>1?ic('cp',20):''}</div>`).join('')}</div></div>`}
 /* ---------- dm ---------- */
 function prev(t){const m=t.msgs[t.msgs.length-1];return(m.f=='m'?'나: ':'')+(m.k=='x'?m.x:m.k=='i'?'사진을 보냈습니다':'동영상을 보냈습니다')+' · '+rel(m.t)}
 function renderDM(){const globe='<svg viewBox="0 0 76 76" width="76" height="76"><circle cx="38" cy="38" r="38" fill="#7db8e8"/><path d="M14 22c8-8 20-6 22 2s-8 8-6 16-10 6-14-2-6-8-2-16zM46 30c8-4 18 2 18 10s-8 14-14 10-8-14-4-20z" fill="#9ccc83"/></svg>';
