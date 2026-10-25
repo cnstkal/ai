@@ -73,6 +73,7 @@
     '일정 추가':['Add Event','添加日程','予定を追加'],'일정 편집':['Edit Event','编辑日程','予定を編集'],'언어':['Language','语言','言語'],
   };
   const originals=new WeakMap();
+  let originalTitle=null;
   const attrOriginals=new WeakMap();
   function lang(){try{const v=localStorage.getItem('hwaho-lang');return LANGS[v]?v:'ko';}catch(e){return 'ko';}}
   function translateText(value,l){
@@ -87,6 +88,8 @@
   }
   function apply(root){
     const l=lang();document.documentElement.lang=LANGS[l]||'ko-KR';
+    const titleEl=document.querySelector('title');
+    if(titleEl){if(originalTitle===null)originalTitle=titleEl.textContent;const nextTitle=l==='ko'?originalTitle:translateText(originalTitle,l);if(titleEl.textContent!==nextTitle)titleEl.textContent=nextTitle;}
     const walker=document.createTreeWalker(root||document.body,NodeFilter.SHOW_TEXT);
     const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
     nodes.forEach(n=>{
