@@ -64,7 +64,7 @@ const REAL_ME=[
 {id:"me_6",u:"me",folder:"6",files:["HNM3shsaYAAaUz7.jpg", "HNM3sijbEAU1HI9.jpg"],n:2,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,15,12).getTime())/H),cap:"행운을 가져다 주렴",mus:"",lk:0,sv:0},
 {id:"me_7",u:"me",folder:"7",files:["HM3sDYibUAE3r3w.jpg", "HM3sDZdbAAA5JTE.jpg", "HM3sEWjaoAAADsz.jpg"],n:3,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,10,12).getTime())/H),cap:"Bring him to ATINY 🫶🏻",mus:"",lk:0,sv:0},
 {id:"me_8",u:"me",folder:"8",files:["HMjRan5bsAEi-pK.jpg"],n:1,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,6,12).getTime())/H),cap:"A heart full of love",mus:"",lk:0,sv:0},
-{id:"me_9",u:"me",folder:"9",files:["HMYxu7QaAAA7pf9.jpg", "HMYxuUwbIAAPo1Q.jpg", "HMYxvaVaAAAMTcY.jpg", "HMjRan5bsAEi-pK.jpg"],n:4,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,4,12).getTime())/H),cap:"배드 야~~호",mus:"ATEEZ - BAD",lk:0,sv:0}
+{id:"me_9",u:"me",folder:"9",files:["HMYxu7QaAAA7pf9.jpg", "HMYxuUwbIAAPo1Q.jpg", "HMYxvaVaAAAMTcY.jpg"],n:3,ratio:.8,seed:0,likes:0,cm:0,sh:0,h:Math.max(0,(NOW-new Date(2026,6,4,12).getTime())/H),cap:"배드 야~~호",mus:"ATEEZ - BAD",lk:0,sv:0}
 ];
 for(let i=PO.length-1;i>=0;i--)if(PO[i].u==='me')PO.splice(i,1);
 REAL_ME.forEach(p=>{PO.push(p);PM[p.id]=p});
