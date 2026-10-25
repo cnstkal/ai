@@ -78,12 +78,37 @@ iframe.app-leaving{display:block;animation:appLeave .12s ease-in both}
 
 /* 데스크톱에서만 폰 프레임, 모바일은 꽉 찬 화면 */
 @media(min-width:700px){#phone{height:min(100dvh,900px);width:min(100vw,calc(100dvh*.5625),506px);border-radius:0}}
+
+/* 잠금화면 */
+.lock{position:absolute;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 70px) 20px calc(env(safe-area-inset-bottom,0px) + 40px);background:rgba(10,20,50,.22);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);color:#fff;transition:opacity .4s ease,transform .4s ease;touch-action:none;user-select:none;-webkit-user-select:none}
+.lock.off{opacity:0;transform:translateY(-24px);pointer-events:none}
+.lk-date{font-size:19px;font-weight:500;opacity:.9;text-shadow:0 1px 6px #0004;margin-top:4px}
+.lk-time{font-size:clamp(64px,22vw,96px);font-weight:300;letter-spacing:-2px;line-height:1.05;text-shadow:0 2px 12px #0003;font-variant-numeric:tabular-nums}
+.lk-spacer{flex:1}
+.lk-hint{font-size:16px;opacity:.85;margin-bottom:22px;animation:lkPulse 2.4s ease-in-out infinite}
+@keyframes lkPulse{0%,100%{opacity:.55}50%{opacity:1}}
+.lk-langs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:360px}
+.lk-langs button{font:inherit;font-size:15px;color:#fff;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.42);border-radius:20px;padding:8px 15px;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lk-langs button.on{background:#fff;color:#111;border-color:#fff;font-weight:600}
 </style>
 <style>/* 앱 실행 중: 시간·와이파이·배터리는 각 앱이 그리므로 셸에서는 숨기고 다이나믹 아일랜드만 유지 */
 #phone.app-open #statusbar #clock,#phone.app-open #statusbar .signals,#phone.app-open #statusbar .sb-right,#phone.app-open #statusbar .sb-left{visibility:hidden!important}
 #phone.app-open #statusbar{background:transparent!important}</style>
 </head>
 <body><div id="phone">
+<div class="lock" id="lock" role="dialog" aria-label="잠금 화면">
+<div class="lk-date" id="lk-date"></div>
+<div class="lk-time" id="lk-time"></div>
+<div class="lk-spacer"></div>
+<div class="lk-hint" id="lk-hint">위로 밀어서 잠금 해제</div>
+<div class="lk-langs" id="lk-langs" role="group" aria-label="언어">
+<button type="button" data-lang="ko">한국어</button>
+<button type="button" data-lang="en">English</button>
+<button type="button" data-lang="zh">中文</button>
+<button type="button" data-lang="ja">日本語</button>
+</div>
+</div>
+
 <div class="status" id="statusbar"><span id="clock">10:11</span><div class="island" id="island" role="status" aria-live="polite"></div><span class="signals"><svg viewBox="0 0 20 14" fill="none"><path d="M1 4.6C6 -.2 14 -.2 19 4.6M4 8c3.5-3.2 8.5-3.2 12 0M7.5 11.3c1.5-1.3 3.5-1.3 5 0" stroke="white" stroke-width="2" stroke-linecap="round"/></svg><svg viewBox="0 0 28 14" fill="none"><rect x="1" y="1" width="23" height="12" rx="3.5" stroke="#ffffff88" stroke-width="1"/><rect id="battery-fill" x="2.5" y="2.5" width="15" height="9" rx="2.2" fill="white"/><path d="M26 5v4" stroke="#ffffff88" stroke-width="1.6" stroke-linecap="round"/></svg></span></div>
 <main><a href="apps/Photo.html"><span class="icon"><svg viewBox="0 0 40 40"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff5d8f"/><stop offset=".5" stop-color="#ffd34f"/><stop offset="1" stop-color="#6bc7ff"/></linearGradient></defs><rect x="3" y="3" width="34" height="34" rx="17" fill="url(#g)"/><circle cx="20" cy="20" r="9" fill="white"/><circle cx="20" cy="20" r="6" fill="#ff7c9e"/><circle cx="29" cy="11" r="2" fill="white"/></svg></span>사진</a>
 <a href="apps/instagram.html"><span class="icon"><svg viewBox="0 0 40 40"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ffb52e"/><stop offset=".5" stop-color="#e1306c"/><stop offset="1" stop-color="#7438c9"/></linearGradient></defs><rect x="3" y="3" width="34" height="34" rx="10" fill="url(#ig)"/><rect x="10" y="10" width="20" height="20" rx="6" fill="none" stroke="white" stroke-width="2.5"/><circle cx="20" cy="20" r="5" fill="none" stroke="white" stroke-width="2.5"/><circle cx="27" cy="13" r="1.7" fill="white"/></svg></span>인스타</a>
@@ -231,4 +256,49 @@ homebar.addEventListener('pointercancel',()=>{hbY=null});
 window.Island={show(i){const el=document.getElementById('island');if(!el)return;el.classList.add('ex');el.innerHTML='';const t=document.createElement('span');t.className='isl-t';t.textContent=i&&i.title||'';const a=document.createElement('span');a.className='isl-s';a.textContent=i&&i.artist||'';el.append(t,a);},hide(){const el=document.getElementById('island');if(!el)return;el.classList.remove('ex');el.textContent='';}};
 homebar.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome()}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')goHome()});
+
+// ===== 잠금화면 =====
+const LOCK_LANGS={
+  ko:{hint:'위로 밀어서 잠금 해제',loc:'ko-KR'},
+  en:{hint:'Swipe up to unlock',loc:'en-US'},
+  zh:{hint:'上滑解锁',loc:'zh-CN'},
+  ja:{hint:'上にスワイプしてロック解除',loc:'ja-JP'}
+};
+let lockLang='ko';
+try{const saved=localStorage.getItem('hwaho-lang');if(LOCK_LANGS[saved])lockLang=saved;}catch(e){}
+const lockEl=document.getElementById('lock');
+function tickLock(){
+  const d=new Date(),loc=LOCK_LANGS[lockLang].loc;
+  document.getElementById('lk-time').textContent=d.toLocaleTimeString(loc,{hour:'numeric',minute:'2-digit'});
+  document.getElementById('lk-date').textContent=d.toLocaleDateString(loc,{weekday:'long',month:'long',day:'numeric'});
+}
+function setLockLang(l){
+  if(!LOCK_LANGS[l])return;
+  lockLang=l;
+  document.documentElement.lang=l==='zh'?'zh-CN':l;
+  document.getElementById('lk-hint').textContent=LOCK_LANGS[l].hint;
+  document.querySelectorAll('#lk-langs button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  tickLock();
+  try{localStorage.setItem('hwaho-lang',l);}catch(e){}
+}
+function unlockScreen(){
+  if(lockEl.classList.contains('off'))return;
+  lockEl.classList.add('off');
+  setTimeout(()=>{lockEl.style.display='none';},400);
+}
+document.querySelectorAll('#lk-langs button').forEach(b=>{
+  ['pointerdown','pointerup','click'].forEach(ev=>b.addEventListener(ev,e=>e.stopPropagation()));
+  b.addEventListener('click',()=>setLockLang(b.dataset.lang));
+});
+let lockY=null;
+lockEl.addEventListener('pointerdown',e=>{if(e.target.closest('#lk-langs'))return;lockY=e.clientY;});
+lockEl.addEventListener('pointerup',e=>{
+  if(lockY===null)return;
+  const dy=lockY-e.clientY;lockY=null;
+  if(dy>50||Math.abs(dy)<8)unlockScreen();
+});
+lockEl.addEventListener('pointercancel',()=>{lockY=null;});
+document.addEventListener('keydown',e=>{if(!lockEl.classList.contains('off')&&(e.key==='Enter'||e.key===' ')&&!e.target.closest('#lk-langs')){e.preventDefault();unlockScreen();}});
+setLockLang(lockLang);
+setInterval(tickLock,10000);
 </script></div></body></html>
