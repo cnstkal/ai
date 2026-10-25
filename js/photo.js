@@ -10,11 +10,12 @@
     g.fillStyle="rgba(0,0,0,.25)";g.fillRect(0,h*.72,w,h*.28);
     return c.toDataURL("image/jpeg",.82);
   }
-  var photos=[];
-  for(var i=0;i<20;i++){
+  // 이미지/사진 폴더의 실제 사진을 보관함에 표시
+  var FILES=["HP2LllraQAA8ue2.jpg","HP2LllwbgAEqVRd.jpg","HP2Lmk2aQAATNpC.jpg","HP2LnkqbIAAiYij.jpg","HP2LpeAbEAAqwqr.jpg","HP2LpeAbUAAo5UU.jpg"];
+  var photos=FILES.map(function(f,i){
     var m=(i*13+43)%60, h=12+(i*5)%12;
-    photos.push({src:make(i),video:i===4?"0:01":"",time:"오후 "+(h>12?h-12:h)+":"+(m<10?"0":"")+m});
-  }
+    return {src:encodeURI("../이미지/사진/"+f),video:"",time:"오후 "+(h>12?h-12:h)+":"+(m<10?"0":"")+m};
+  });
   photos[0].time="오후 12:43";
   document.getElementById("cnt").textContent=photos.length.toLocaleString("ko-KR")+"개의 항목";
   var grid=document.getElementById("grid"),strip=document.getElementById("strip"),big=document.getElementById("big"),
