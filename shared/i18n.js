@@ -2,7 +2,7 @@
 (function(){
   const LANGS={ko:'ko-KR',en:'en-US',zh:'zh-CN',ja:'ja-JP'};
   const DICT={
-    '사진':['Photos','照片','写真'],'인스타':['Instagram','Instagram','Instagram'],'디시':['DC Inside','디시인사이드','DCインサイド'],
+    '사진':['Photos','照片','写真'],'인스타':['Instagram','Instagram','Instagram'],
     '카카오톡':['KakaoTalk','KakaoTalk','カカオトーク'],'전화':['Phone','电话','電話'],'메모':['Notes','备忘录','メモ'],
     '설정':['Settings','设置','設定'],'번역':['Translate','翻译','翻訳'],'날씨':['Weather','天气','天気'],
     '캘린더':['Calendar','日历','カレンダー'],'포스타입':['Postype','Postype','Postype'],'홈 화면':['Home Screen','主屏幕','ホーム画面'],
