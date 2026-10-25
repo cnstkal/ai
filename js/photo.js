@@ -11,7 +11,7 @@
     return c.toDataURL("image/jpeg",.82);
   }
   // 이미지/사진 폴더의 실제 사진을 보관함에 표시
-  var FILES=["HP2LllraQAA8ue2.jpg","HP2LllwbgAEqVRd.jpg","HP2Lmk2aQAATNpC.jpg","HP2LnkqbIAAiYij.jpg","HP2LpeAbEAAqwqr.jpg","HP2LpeAbUAAo5UU.jpg"];
+  var FILES=["HP2LllraQAA8ue2.jpg","HP2LllwbgAEqVRd.jpg","HP2Lmk2aQAATNpC.jpg","HP2LnkqbIAAiYij.jpg","HP2LpeAbEAAqwqr.jpg","HP2LpeAbUAAo5UU.jpg","HP2LpeBbwAAWpQ5.jpg","HS57O5Ka8AARH3L.jpg","HS57QRmaYAAzhkw.jpg","HS57Rk-boAAdFeo.jpg","HS57RlOa8AAkoO-.jpg","HUrOhekaAAEIEdy.jpg","HUrOhzabkAAZPgL.jpg","HUrOiYZbAAArf6D.jpg","HVZhxbEacAAFyf4.jpg"];
   var photos=FILES.map(function(f,i){
     var m=(i*13+43)%60, h=12+(i*5)%12;
     return {src:encodeURI("../이미지/사진/"+f),video:"",time:"오후 "+(h>12?h-12:h)+":"+(m<10?"0":"")+m};
