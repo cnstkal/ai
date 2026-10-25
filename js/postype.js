@@ -92,7 +92,7 @@ const comments=id=>{const base=(C0[id]||Array.from({length:byId(id).cm},(_,i)=>[
 const cnt=(p,k)=>p[k]+(S[k==='likes'?'like':'rep'][p.id]?1:0);
 const ccount=id=>comments(id).length;
 let view='home',prev='home',tab='discover',st='all',cur=null;
-const avatar=(a,sz)=>`<div class="av" style="background:${AU[a].c};${sz?`width:${sz}px;height:${sz}px`:''}">${AU[a].n[0]}</div>`;
+const avatar=(a,sz)=>`<div class="av" style="${sz?`width:${sz}px;height:${sz}px`:''}"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><circle cx="50" cy="38" r="18" fill="#f3f4f6"/><path d="M14 100C18 76 32 67 50 67S82 76 86 100Z" fill="#e9eaec"/></svg></div>`;
 function actions(p){const l=S.like[p.id],b=S.book[p.id],r=S.rep[p.id];
 return `<div class="act"><button data-act="like" data-id="${p.id}" class="${l?'red':''}">${ic('heart',26,l)}${cnt(p,'likes')}</button><button data-act="cm" data-id="${p.id}">${ic('cmt',26)}${ccount(p.id)}</button><span class="sp"></span><button data-act="book" data-id="${p.id}">${ic('book',26,b)}</button><button data-act="share">${ic('share',26)}</button></div>`}
 function card(p,mode){const sub=S.sub[p.au];
@@ -102,7 +102,7 @@ return `<article class="post"><div class="ph">${avatar(p.au)}<div class="who"><b
 <div class="tags">${p.ad?'<span class="tag ad">성인</span>':''}${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
 ${mode==='home'&&p.au!=='u'?`<div class="cover" data-act="open" data-id="${p.id}" style="background:linear-gradient(135deg,${p.g[0]},${p.g[1]})">${esc(p.cv)}</div>`:''}
 <div class="meta">조회 ${p.views.toLocaleString()}${p.pt?` · ${p.pt.toLocaleString()}P`:''}</div>${actions(p)}
-${mode==='search'&&cs.length&&p.id%2===0?`<div class="prev" data-act="cm" data-id="${p.id}"><div class="av" style="background:#9aa0a6;width:30px;height:30px">${esc(cs[0].n[0])}</div><span>${esc(cs[0].x)}</span></div>`:''}</article>`}
+${mode==='search'&&cs.length&&p.id%2===0?`<div class="prev" data-act="cm" data-id="${p.id}"><div class="av" style="width:30px;height:30px"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><circle cx="50" cy="38" r="18" fill="#f3f4f6"/><path d="M14 100C18 76 32 67 50 67S82 76 86 100Z" fill="#e9eaec"/></svg></div><span>${esc(cs[0].x)}</span></div>`:''}</article>`}
 function renderFeed(){let list=P;if(tab==='subs')list=P.filter(p=>S.sub[p.au]);
 $('#feed').innerHTML=list.length?list.map(p=>card(p,'home')).join(''):'<div class="empty">구독한 작가가 없어요.<br>발견 탭에서 구독해 보세요.</div>'}
 function renderSearch(){const q=$('#q').value.trim().toLowerCase();$('#qx').style.display=q?'block':'none';
