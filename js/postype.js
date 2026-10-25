@@ -81,7 +81,7 @@ const YUYU_127=[
 '“네가 없으면 심심하니까. 그 정도는 주인으로서 말할 수 있잖아.”',
 '윤호는 담요를 받아 들고 환하게 웃었다. 성화는 그 얼굴을 보며 또 괜히 틱틱거리고 싶어졌지만, 이번에는 참았다. 메이드와 주인이라는 이름으로 감춰 두기엔 윤호가 이미 너무 가까운 사람이 되어 있었다. 성화는 그 사실을 인정하기까지 시간이 더 필요하겠지만, 적어도 오늘 밤만큼은 윤호가 곁에 있는 게 싫지 않았다.'
 ];
-
+for(let i=0;i<10;i++){const ep=127-i,body=ep===127?YUYU_127:YUYU_PREVIEWS[ep];P.push({id:1127-i,au:'u',t:'나를 안아주세요 성화님 '+ep+'화',type:'포스트',time:i===0?'오늘':i===1?'어제':`${i}일 전`,ch:'유유',ad:0,tags:[],g:[UY[i],'#f8f5fa'],cv:'나를 안아주세요 성화님',views:[21,18,24,19,22,17,26,20,23,16][i],pt:0,likes:[4,1,0,2,0,0,1,0,3,0][i],rep:0,cm:[0,0,1,0,0,2,0,0,1,0][i],kind:'post',body});}
 P.sort((a,b)=>(a.au==='u'?-1:0)-(b.au==='u'?-1:0)||(a.au==='u'&&b.au==='u'?b.id-a.id:a.id-b.id));
 const C0={1127:[['익명1','5시간 전','이분 뭐하는 분이세요?',0,0],['익명2','1일 전','와 뭐짘ㅋㅋㅋㅋ',0,0],['익명3','3시간 전','근데 윤호가 누구예요?',0,0,[['익명4','본인인듯']]],['익명5','2시간 전','대단하시다',0,0],['익명6','2시간 전','(사진)',0,0],['익명7','1시간 전','…',0,0],['익명8','1시간 전','…',0,0],['익명9','1시간 전','…',0,0]],1:[['오피디','5일 전','아직 읽기 전이지만 전 이미 이걸 좋아해요',3,1],['.','4일 전','글 분위기가 너무 좋아요ㅠㅠ',1,1],['꽁치','5일 전','앙 좋아요',1,0],['꾸엉','5일 전','이런것도 재밌게 쓰시네..... 츄베릅',1,0]]};
 let S={sub:{},like:{},book:{},rep:{},cm:{},clk:{}};
@@ -100,7 +100,7 @@ const cs=comments(p.id);
 return `<article class="post"><div class="ph">${avatar(p.au)}<div class="who"><b>${AU[p.au].n}</b><span>${p.time} · ${p.type}</span></div><button class="subbtn ${sub?'on':''}" data-act="sub" data-au="${p.au}">${sub?'구독중':'구독'}</button><button data-act="more" data-id="${p.id}">${ic('more',26)}</button></div>
 <div class="pt" data-act="open" data-id="${p.id}">${esc(p.t)}</div><div class="pb" data-act="open" data-id="${p.id}">${esc(p.body[0])}</div>
 <div class="tags">${p.ad?'<span class="tag ad">성인</span>':''}${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
-${mode==='home'?`<div class="cover" data-act="open" data-id="${p.id}" style="background:linear-gradient(135deg,${p.g[0]},${p.g[1]})">${esc(p.cv)}</div>`:''}
+${mode==='home'&&p.au!=='u'?`<div class="cover" data-act="open" data-id="${p.id}" style="background:linear-gradient(135deg,${p.g[0]},${p.g[1]})">${esc(p.cv)}</div>`:''}
 <div class="meta">조회 ${p.views.toLocaleString()}${p.pt?` · ${p.pt.toLocaleString()}P`:''}</div>${actions(p)}
 ${mode==='search'&&cs.length&&p.id%2===0?`<div class="prev" data-act="cm" data-id="${p.id}"><div class="av" style="background:#9aa0a6;width:30px;height:30px">${esc(cs[0].n[0])}</div><span>${esc(cs[0].x)}</span></div>`:''}</article>`}
 function renderFeed(){let list=P;if(tab==='subs')list=P.filter(p=>S.sub[p.au]);
