@@ -67,7 +67,7 @@ h1{margin:6px 0 4px 17px;font-size:34px;line-height:41px;font-weight:700;flex:no
 .f label:last-child{border:0}.f input[type=text],.f input[type=tel],.f input[type=datetime-local],.f select,.f textarea{border:0;outline:0;text-align:right;background:none;flex:1;min-width:0}
 .f textarea{height:90px;text-align:left;padding:10px 0;resize:none}
 .sb2{display:flex;gap:8px;flex-wrap:wrap}.sb2 button{flex:1;min-width:30%;height:44px;border-radius:12px;background:#fff;color:#007aff;font-size:16px}.sb2 .pr{background:#007aff;color:#fff}.sb2 .dg{color:#ff3b30}
-.big{display:flex;flex-direction:column;align-items:center;margin-bottom:12px}.big .av{width:90px;height:90px;margin:0 0 6px}
+.big{display:flex;flex-direction:column;align-items:center;margin-bottom:12px}.big .av{width:64px;height:64px;margin:0 0 6px}
 
 *{scrollbar-width:none}*::-webkit-scrollbar{display:none}
 /* 퀄리티 보정 */
@@ -82,4 +82,4 @@ h1{margin:6px 0 4px 17px;font-size:34px;line-height:41px;font-weight:700;flex:no
 .av{box-shadow:0 0 0 .5px rgba(0,0,0,.08)}
 .sb{letter-spacing:-.2px}
 h1{letter-spacing:-.6px}
-.av{background:#c9cdd6}.av svg{display:block}
+.av{background:linear-gradient(#a9b7da,#7f86bd)}.av svg{display:block}
