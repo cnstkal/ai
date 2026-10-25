@@ -7,7 +7,7 @@
 (function () {
   if (window.YuyuOverlay) return;
   const css = `
-#yy-ov{position:absolute;inset:0;z-index:40;display:flex;opacity:0;pointer-events:none;transition:opacity .45s ease;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 60px);background:rgba(0,0,0,.55);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Pretendard",sans-serif}
+#yy-ov{position:fixed;inset:0;z-index:99999;display:flex;opacity:0;pointer-events:none;transition:opacity .45s ease;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 60px);background:rgba(0,0,0,.55);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Apple SD Gothic Neo","Pretendard",sans-serif}
 #yy-ov.on{opacity:1;pointer-events:auto}
 #yy-bub,#yy-orb{transform:translateY(16px) scale(.96);transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .45s ease;opacity:0}
 #yy-ov.on #yy-bub,#yy-ov.on #yy-orb{transform:none;opacity:1}
@@ -21,7 +21,7 @@
   const ov = document.createElement('div');
   ov.id = 'yy-ov';
   ov.innerHTML = '<div id="yy-bub"></div><div id="yy-orb"></div>';
-  const host = document.getElementById('phone') || document.getElementById('screen') || document.body;
+  const host = document.body;
   host.appendChild(ov);
 
   let lines = [], idx = 0, done = null;
