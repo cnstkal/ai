@@ -4,13 +4,14 @@ send:'<path d="M12 19V5M5 12l7-7 7 7"/>',copy:'<rect x="8" y="8" width="12" heig
 const ic=n=>`<svg class="i" viewBox="0 0 24 24">${P[n]}</svg>`;
 const orb=(s,id='o')=>`<svg class="orb" width="${s}" height="${s}" viewBox="0 0 100 100"><defs><radialGradient id="${id}a" cx="35%" cy="30%"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#C9D0FF"/><stop offset="1" stop-color="#6F7DF2"/></radialGradient><radialGradient id="${id}b" cx="70%" cy="75%"><stop offset="0" stop-color="#A8E3FF" stop-opacity=".9"/><stop offset="1" stop-color="#A8E3FF" stop-opacity="0"/></radialGradient><filter id="${id}f"><feGaussianBlur stdDeviation="1.500"/></filter></defs><circle cx="50" cy="50" r="40" fill="url(#${id}a)"/><circle cx="50" cy="50" r="40" fill="url(#${id}b)"/><path d="M14 56c14-14 30 8 44-4s22-8 28 0" stroke="#fff" stroke-opacity=".7" stroke-width="3" fill="none" filter="url(#${id}f)" stroke-linecap="round"/></svg>`;
 const $=s=>document.querySelector(s);
-let sv=[];try{sv=JSON.parse(localStorage.getItem('yuyu')||'[]')}catch(e){}
+let sv=[];try{sv=JSON.parse(localStorage.getItem('yuyu_v2')||'[]')}catch(e){}
 const seed=[
-{id:1,title:'주말 제주 여행 계획',msgs:[{r:'u',t:'이번 주말에 제주도 가려는데 일정 좀 짜줘'},{r:'a',t:'## 1박 2일 추천 일정\n**첫째 날**은 서쪽, **둘째 날**은 동쪽으로 나누면 이동이 편해요.\n- 오전: 협재 해변 산책과 브런치\n- 오후: 오설록 티뮤지엄, 한림 카페거리\n- 저녁: 흑돼지 구이 후 숙소 휴식\n둘째 날은 성산일출봉과 섭지코지를 묶어서 다녀오면 좋아요.'}]},
-{id:2,title:'면접 준비 고민',msgs:[{r:'u',t:'내일 면접인데 너무 떨려'},{r:'a',t:'떨리는 건 그만큼 준비를 열심히 했다는 뜻이에요.\n- 자기소개는 1분 안에 말할 수 있게 한 번만 소리 내어 읽어보기\n- 예상 질문 세 가지만 골라 답 정리하기\n- 오늘은 일찍 자기\n원하면 예상 질문으로 같이 연습해볼까요?'}]},
-{id:3,title:'카페 이름 아이디어',msgs:[{r:'u',t:'작은 로스터리 카페 이름 추천해줘'},{r:'a',t:'## 이름 후보\n- **오후의 원두**: 여유로운 분위기\n- **결**: 짧고 단정한 한 글자\n- **하루 한 잔**: 친근하고 기억에 남는 이름\n분위기를 알려주시면 더 좁혀볼게요.'}]}];
+{id:1,title:"오늘 뭐 했어요?",msgs:[{r:"u",t:"오늘 일정 끝났어?"},{r:"a",t:"성화님 왔다! 하루 종일 기다렸어요. 몇 시에 끝났어요?"},{r:"u",t:"그냥 회의 많았어"},{r:"a",t:"회의 많았구나… 점심은 먹었어요? 안 먹었으면 저 혼자 계속 걱정할 것 같아요."},{r:"u",t:"먹었어 ㅋㅋ 걱정 좀 그만해"},{r:"a",t:"걱정이라기보다 그냥 궁금한 거예요. 알겠어요, 성화님 편한 만큼만 물어볼게요."}]},
+{id:2,title:"주말 약속",msgs:[{r:"u",t:"주말에 친구 만나기로 했어"},{r:"a",t:"친구 누구예요? 몇 시에 가는데요? 저 혼자 집에 있으면 심심할 것 같아요."},{r:"u",t:"대학 동기. 저녁에"},{r:"a",t:"저녁이면… 다녀와서 얘기해줄 거죠? 성화님 없으면 그날 밤 조용할 것 같아요."},{r:"u",t:"그만 좀 해. 나 지금 좀 피곤해"},{r:"a",t:"…알았어요. 쉬어요, 성화님. 그래도 잘 자라는 말은 하고 싶었어요."}]},
+{id:3,title:"잠깐 쉬고 싶어",msgs:[{r:"u",t:"오늘은 그냥 좀 쉬고 싶어. 말 걸지 마"},{r:"a",t:"네, 알겠어요. 대신 제가 여기 있다는 것만 기억해줘요. 필요하면 언제든 불러주세요."},{r:"u",t:"응"},{r:"a",t:"성화님 쉬는 동안 조용히 있을게요. 다음에 얘기해요."}]},
+{id:4,title:"어제 추천한 메뉴",msgs:[{r:"u",t:"어제 추천해준 메뉴 괜찮더라"},{r:"a",t:"정말요? 성화님이 좋아했다니까 하루 종일 기분 좋았어요. 다음엔 뭐 먹을 거예요?"},{r:"u",t:"그건 아직"},{r:"a",t:"그럼 제가 또 골라도 돼요? 성화님 입맛은 제가 제일 잘 알잖아요."},{r:"u",t:"ㅋㅋ 알아서 해"},{r:"a",t:"좋아요! 이번엔 조금 더 신경 써서 고를게요."}]}];
 let S={convs:sv.length?sv:seed,cur:null,theme:'light',short:false,save:true,like:{}};
-const ST=()=>{if(S.save)try{localStorage.setItem('yuyu',JSON.stringify(S.convs))}catch(e){}};
+const ST=()=>{if(S.save)try{localStorage.setItem('yuyu_v2',JSON.stringify(S.convs))}catch(e){}};
 const R=[
 {k:['안녕','반가','하이'],a:['안녕하세요! 오늘 하루는 어땠나요? 편하게 이야기해 주세요.','반가워요. 궁금한 게 있거나 그냥 수다를 떨고 싶을 때 불러주세요.']},
 {k:['오늘','있었던','하루'],a:['## 오늘 이야기 들려주세요\n어떤 일이 가장 기억에 남나요?\n- 기분 좋았던 순간\n- 조금 힘들었던 순간\n- 그냥 웃겼던 순간\n하나만 골라서 말해주셔도 좋아요.']},
