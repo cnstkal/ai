@@ -14,7 +14,7 @@
   var FILES=["HP2LllraQAA8ue2.jpg","HP2LllwbgAEqVRd.jpg","HP2Lmk2aQAATNpC.jpg","HP2LnkqbIAAiYij.jpg","HP2LpeAbEAAqwqr.jpg","HP2LpeAbUAAo5UU.jpg","HP2LpeBbwAAWpQ5.jpg","HS57O5Ka8AARH3L.jpg","HS57QRmaYAAzhkw.jpg","HS57Rk-boAAdFeo.jpg","HS57RlOa8AAkoO-.jpg","HUrOhekaAAEIEdy.jpg","HUrOhzabkAAZPgL.jpg","HUrOiYZbAAArf6D.jpg","HVZhxbEacAAFyf4.jpg"];
   var photos=FILES.map(function(f,i){
     var m=(i*13+43)%60, h=12+(i*5)%12;
-    return {src:encodeURI("../이미지/사진/"+f),video:"",time:"오후 "+(h>12?h-12:h)+":"+(m<10?"0":"")+m};
+    return {src:encodeURI("../이미지/사진/"+f),thumb:encodeURI("../이미지/사진/thumbs/"+f),video:"",time:"오후 "+(h>12?h-12:h)+":"+(m<10?"0":"")+m};
   });
   photos[0].time="오후 12:43";
   document.getElementById("cnt").textContent=photos.length.toLocaleString("ko-KR")+"개의 항목";
@@ -23,10 +23,10 @@
       dtime=document.getElementById("dtime"),cur=0;
   photos.forEach(function(p,i){
     var b=document.createElement("button");b.className="cell";b.setAttribute("aria-label","사진 "+(i+1));
-    b.innerHTML='<img alt="" loading="lazy" decoding="async" src="'+p.src+'">'+(p.video?'<span class="dur">'+p.video+'</span>':"");
+    b.innerHTML='<img alt="" loading="lazy" decoding="async" src="'+p.thumb+'">'+(p.video?'<span class="dur">'+p.video+'</span>':"");
     b.onclick=function(){open(i)};grid.appendChild(b);
     var t=document.createElement("button");t.setAttribute("aria-label","사진 "+(i+1));
-    t.innerHTML='<img alt="" loading="lazy" decoding="async" src="'+p.src+'">';t.onclick=function(){show(i,true)};strip.appendChild(t);
+    t.innerHTML='<img alt="" loading="lazy" decoding="async" src="'+p.thumb+'">';t.onclick=function(){show(i,true)};strip.appendChild(t);
   });
   function show(i,smooth){
     if(i<0||i>=photos.length)return;

@@ -70,3 +70,15 @@ h1{margin:6px 0 4px 17px;font-size:34px;line-height:41px;font-weight:700;flex:no
 .big{display:flex;flex-direction:column;align-items:center;margin-bottom:12px}.big .av{width:90px;height:90px;margin:0 0 6px}
 
 *{scrollbar-width:none}*::-webkit-scrollbar{display:none}
+/* 퀄리티 보정 */
+.msgs,#rows{scroll-behavior:smooth}
+.b{max-width:74%;padding:9px 14px 9px;border-radius:20px;font-size:17px;line-height:1.36;letter-spacing:-.2px;box-shadow:0 1px 1.5px rgba(0,0,0,.06);word-break:keep-all;overflow-wrap:anywhere}
+.b.in{background:#eef0f4;color:#111;border-bottom-left-radius:6px}
+.b.out{background:linear-gradient(180deg,#3d9bff 0%,#0a7aff 100%);color:#fff;border-bottom-right-radius:6px;box-shadow:0 1px 2px rgba(10,122,255,.25)}
+.inp{padding-top:8px;background:#fff;border-top:.5px solid rgba(0,0,0,.12)}
+.inp>*{transition:transform .2s ease,opacity .2s ease}
+.pill,.plus,.ib{transition:background .15s ease,transform .12s ease}
+.pill:active,.ib:active{transform:scale(.96)}
+.av{box-shadow:0 0 0 .5px rgba(0,0,0,.08)}
+.sb{letter-spacing:-.2px}
+h1{letter-spacing:-.6px}
