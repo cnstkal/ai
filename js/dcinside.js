@@ -44,8 +44,8 @@ function rich(t){return esc(t).replace(/(data:image[^\s]+|https?:\/\/[^\s]+\.(?:
 const now=()=>{const d=new Date(),z=n=>String(n).padStart(2,'0');return{l:`${z(d.getMonth()+1)}.${z(d.getDate())}`,c:`${z(d.getMonth()+1)}.${z(d.getDate())} ${z(d.getHours())}:${z(d.getMinutes())}`,f:`${d.getFullYear()}.${z(d.getMonth()+1)}.${z(d.getDate())} ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`}};
 const go=h=>{location.hash=h};
 const cnt=id=>S.cmts.filter(c=>c.pid==id).length;
-function head(){return`<div class="nv"><div class="hd"><div class="logo">탭</div><div class="sb"><span class="mn">${I('menu')}</span><input id="q" placeholder="갤러리 & 통합검색" value="${esc(Q.q)}"><span class="sg" id="sgo">${I('search')}</span><span class="rc">최근 방문</span></div></div>
-<div class="mnu"><a>갤러리</a><a class="on">마이너갤러리</a><a>미니갤러리</a><a>인물갤러리</a><a>갤로그</a><a>이벤트</a></div></div>
+function head(){return`<div class="nv"><div class="hd"><div class="logo">탭</div><div class="sb"><span class="mn">${I('menu')}</span><input id="q" placeholder="게시판 & 통합검색" value="${esc(Q.q)}"><span class="sg" id="sgo">${I('search')}</span><span class="rc">최근 방문</span></div></div>
+<div class="mnu"><a>게시판</a><a class="on">주제판</a><a>소모임</a><a>인물판</a><a>내 활동</a><a>이벤트</a></div></div>
 <div class="gt"><h1 data-go="#/" style="cursor:pointer">${GAL} <small>(${S.posts.length.toLocaleString()})</small></h1><span class="lk">${I('info')} 설정 연관</span><button class="wb" data-go="#/w">글쓰기</button></div>`}
 function bindHead(){const q=$('#q');if(!q)return;q.onkeydown=e=>{if(e.key==='Enter')doS()};$('#sgo').onclick=doS;
 function doS(){Q.q=q.value.trim();Q.tab='all';Q.head='전체';go('#/');render()}
@@ -61,7 +61,7 @@ const rows=ps.map(p=>{const ty='i',vis=S.visited.includes(p.id);
 return`<div class="row" data-id="${p.id}"><div class="m"><div class="t${vis?' v':''}">${LI[ty||'i']}<span class="x">${esc(p.t)}</span></div>
 <div class="s">${esc(p.h)}<i>|</i>${esc(p.w)}${p.ip?'('+esc(p.ip)+')':''}${fixI(p.fx)}<i>|</i>${p.dl||p.d.slice(0,5)}<i>|</i>조회 ${p.v}<i>|</i>추천 <span class="${p.r>=5?'up':''}">${p.r}</span></div></div><div class="cm">${cnt(p.id)}</div></div>`}).join('');
 $('#app').innerHTML=head()+`<div class="tabs">${[['all','전체'],['rec','개념글'],['no','공지']].map(([k,l])=>`<button data-t="${k}" class="${Q.tab===k?'on':''}">${l}</button>`).join('')}<select id="nn">${[30,50,100].map(n=>`<option ${n==Q.n?'selected':''} value="${n}">${n}개</option>`).join('')}</select></div>
-<div class="hf">${['전체',...HEADS].map(h=>`<button data-h="${h}" class="${Q.head===h?'on':''}">${h}</button>`).join('')}</div>${rows||'<div class="emp">게시글이 없습니다.</div>'}<button class="fab" data-go="#/w">${I('pen')}</button>`;
+${rows||'<div class="emp">게시글이 없습니다.</div>'}<button class="fab" data-go="#/w">${I('pen')}</button>`;
 document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>{Q.tab=b.dataset.t;render()});
 document.querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>{Q.head=b.dataset.h;render()});
 $('#nn').onchange=e=>{Q.n=+e.target.value;render()};
@@ -72,7 +72,7 @@ return tops.map(t=>one(t,0)+cs.filter(c=>c.pr==t.id).map(c=>one(c,1)).join('')).
 function view(id){const p=S.posts.find(p=>p.id==id);if(!p){go('#/');return}
 if(!S.visited.includes(p.id)){S.visited.push(p.id);p.v++;save()}
 const v=S.votes[id]||{},n=cnt(id),rp=Q.reply&&S.cmts.find(c=>c.id==Q.reply);
-$('#app').innerHTML=head()+`<div class="pt"><h2>[${esc(p.h)}] ${esc(p.t)} ${AI.ph}</h2><div class="a"><span class="au">${esc(p.w)}${p.ip?'('+esc(p.ip)+')':''}${fixI(p.fx)}<i>|</i><span class="dt">${fd(p)}</span></span><span class="gr">${AI.fd.replace('class="ia"','class="ia fo"')}<span class="gl">갤로그가기</span></span></div></div>
+$('#app').innerHTML=head()+`<div class="pt"><h2>[${esc(p.h)}] ${esc(p.t)} ${AI.ph}</h2><div class="a"><span class="au">${esc(p.w)}${p.ip?'('+esc(p.ip)+')':''}${fixI(p.fx)}<i>|</i><span class="dt">${fd(p)}</span></span><span class="gr">${AI.fd.replace('class="ia"','class="ia fo"')}<span class="gl">내 활동 보기</span></span></div></div>
 <div class="st">조회수 ${p.v}<i>|</i>추천 ${p.r}<i>|</i><span class="pill">댓글 <b>${n}</b></span>${p.mine?'<span style="margin-left:auto"><button data-ed="1" style="color:#3b4890">수정</button> <button data-dp="1" style="color:#c4262e">삭제</button></span>':''}</div>
 <div class="bd">${rich(p.body)}${p.img?`<img src="${p.img}">`:''}</div>
 <div class="rec"><div class="n"><b>${p.r}</b><span>${fixI(1)}<b>${p.fr||0}</b></span></div><button class="cc${v.up?' on':''}" id="up">${I('star')}<span>개념</span></button></div>
