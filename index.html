@@ -289,7 +289,11 @@ function unlockScreen(){
 }
 document.querySelectorAll('#lk-langs button').forEach(b=>{
   ['pointerdown','pointerup','click'].forEach(ev=>b.addEventListener(ev,e=>e.stopPropagation()));
-  b.addEventListener('click',()=>setLockLang(b.dataset.lang));
+  b.addEventListener('click',()=>{
+    setLockLang(b.dataset.lang);
+    try{localStorage.setItem('hwaho-lock-skip','1');}catch(e){}
+    unlockScreen();
+  });
 });
 let lockY=null;
 lockEl.addEventListener('pointerdown',e=>{if(e.target.closest('#lk-langs'))return;lockY=e.clientY;});
@@ -300,6 +304,7 @@ lockEl.addEventListener('pointerup',e=>{
 });
 lockEl.addEventListener('pointercancel',()=>{lockY=null;});
 document.addEventListener('keydown',e=>{if(!lockEl.classList.contains('off')&&(e.key==='Enter'||e.key===' ')&&!e.target.closest('#lk-langs')){e.preventDefault();unlockScreen();}});
+try{if(localStorage.getItem('hwaho-lock-skip')==='1'){lockEl.classList.add('off');lockEl.style.display='none';}}catch(e){}
 setLockLang(lockLang);
 setInterval(tickLock,10000);
 </script></div><script src="shared/i18n.js"></script>
