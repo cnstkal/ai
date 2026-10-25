@@ -53,7 +53,7 @@ const tops=()=>S.posts.filter(p=>!p.parent);
 function draw(reset){const v=$('#view'),y=v.scrollTop;let T='',H='',fab=1;
 if(R.n==='home'){const m=S.users.find(u=>u.id===S.me)||S.users[0]||{av:''};
 T=`<div class="hd"><img class="av" src="${esc(m.av)}" data-a="prof" data-id="${m.id}"><button data-a="menu">${I.x}</button><span style="width:32px"></span></div><div class="tabs"><button class="${R.tab==='rec'?'on':''}" data-a="ht" data-id="rec">추천</button><button class="${R.tab==='fol'?'on':''}" data-a="ht" data-id="fol">팔로우 중</button></div>`;
-let l=tops().filter(p=>R.tab==='rec'||U(p.uid).f||p.uid===S.me);H=l.length?l.map(p=>post(p)).join(''):'<div class="ph"><b>게시물이 없습니다</b>+ 버튼으로 작성해보세요</div>';}
+let l=tops().filter(p=>R.tab==='rec'||U(p.uid).f||p.uid===S.me).filter(p=>p.uid!=='u_yuyu'||p.id==='pyuyu1'||U(p.uid).f);H=l.length?l.map(p=>post(p)).join(''):'<div class="ph"><b>게시물이 없습니다</b>+ 버튼으로 작성해보세요</div>';}
 else if(R.n==='detail'){const p=PO(R.id);if(!p){back();return}const u=U(p.uid),rs=kids(p.id);fab=0;
 T=`<div class="hd"><button data-a="back">${I.back.replace('<svg','<svg width="24" height="24"')}</button><span style="flex:1"></span></div>`;
 H=`<div style="padding:8px 16px"><div class="row" style="gap:12px;align-items:center"><img class="av" style="width:48px;height:48px;flex:none;border-radius:50%" src="${esc(u.av)}" data-a="prof" data-id="${p.uid}"><div style="flex:1;line-height:22px;min-width:0"><div class="nm" style="font-size:17px"><b style="max-width:none">${esc(u.name)}</b>${u.locked?I.lock.replace('<svg','<svg width="16" height="16"'):''}${u.verified?I.chk:''}</div><span style="color:#536471;font-size:15px">@${esc(u.handle)}</span></div><button data-a="pm" data-id="${p.id}" style="flex:none;color:#536471">${I.more}</button></div>
